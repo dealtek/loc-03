@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Location App Login</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+<script>
+    (function(_,e,rr,s){_errs=[s];var c=_.onerror;_.onerror=function(){var a=arguments;_errs.push(a);
+    c&&c.apply(this,a)};var b=function(){var c=e.createElement(rr),b=e.getElementsByTagName(rr)[0];
+    c.src="https://beacon.errorception.com/"+s+".js";c.async=!0;b.parentNode.insertBefore(c,b)};
+    _.addEventListener?_.addEventListener("load",b,!1):_.attachEvent("onload",b)})
+    (window,document,"script","5653a9f734ac603f4600021a");
+</script>
+
+
+
+<script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<script src="inc/jq/validate/dist/jquery.validate.js"></script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+ 
+</head>
+<body>
+
+
+<div data-role="header" data-position="fixed" data-theme="a">
+<!--add header -->
+
+
+<div class="box1 center1 boxblue">
+
+<img src="app-logo-banner-320x60.png" width="300" height="60" border="0">
+
+</div>
+
+</div>
+
+<!-- /header -->
+
+<section id="page1" data-role="page">
+<!-- need page1 id for form process -->
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+      
+<!--INSERT START -->
+
+
+
+<h3>GEO LOGIN</h3>
+
+
+
+<!--Login to our <strong class="green1">- Secure Server - </strong><br><br> -->
+<!--
+<a rel="external" class="big18" href="index.html">Go Back to Start</a><br> -->
+
+
+<h1> <span class="blue1"><strong>
+     <!-- where the response will be displayed -->
+<div id='response'></div>
+</strong></span>
+</h1>
+
+<table align="center" width="315" border="0">
+
+  <tr>
+    <td valign="TOP" background="pics/bk2.jpg">
+      
+       
+<form action=""  method="POST" name="nowform" id="nowform">
+<div  class="box1 center1">
+
+
+<!--(tmp login 45021 pass 123456) <br> -->
+<div id='nowform_login_errorloc' class="error_strings"></div>
+
+<div data-role="fieldcontain"></div>
+	<label for="login">Enter Your COMPANY GEO ID*: </label><br>
+<input id="login" name="login" type="text" size="15" class="print_data_22" />			
+			
+
+<!--<p>Drivers License-PASSWORD*:<br> -->
+<div id='nowform_pass_errorloc' class="error_strings"></div>
+
+<div data-role="fieldcontain"></div>
+<label for="pass">PASSWORD*:</label><br>
+	<input name="pass" type="password" class="print_data_22" id="pass" value="123" size="15">			
+
+
+</p>
+<hr />
+<input data-role="submit" type="submit" value="Login">
+
+
+<input type="hidden" name="trylogin" value= "true" >
+</form>
+
+
+
+<br>
+(just numbers and letters)<br>
+(Your Drivers License Number<br>
+Is Your Password)
+
+<!--<br>temp pass <span id="webpass22"></span><br> -->
+
+
+</td>
+  </tr>
+</table>
+
+
+
+
+<script>
+
+
+
+
+
+$("#page1").on("pageinit", function() {
+        //alert ("test1");
+
+$("form").validate({
+		rules: {
+                Client_ID: {
+                    required: true
+                },
+                webpass: {
+                    required: true
+                }
+            },
+            errorPlacement: function(error, element) {
+                error.insertBefore(element.parent());
+
+                //alert ("test2");
+            },
+
+		submitHandler: function(form) {
+        //code that should happen after validation if no errors are found goes here
+        
+        //alert ("success");
+	
+// form valication successful
+
+ var login  = form.login.value;
+	var pass = form.pass.value;
+
+
+//localStorage.setItem("PUC_Number", form.PUC_Number.value);
+
+// start post	
+	
+	
+// show that something is loading
+		$('#response').html("<b>Logging Into GEO...</b>");
+		
+		/*
+		 * 'post_receiver.php' - where you will pass the form data
+		 * $(this).serialize() - to easily read form data
+		 * function(data){... - data contains the response from post_receiver.php
+		 */
+//client-update-contact.php	- client-update-ztmp.php	 
+$.post('http://nmiapp.com/zgeo/app-data/login-company.php', {
+
+//Client_ID: localStorage.getItem("Client_ID"),
+
+//PUC_Number: localStorage.getItem("PUC_Number"),
+	
+login: login,
+pass: pass,		
+		
+}, function(data){
+			
+			// show the response
+			// bak $('#response').html(data);
+			// FIX THIS WITH BETTER SOON - do dbetter in php page
+			$('#response').html("SUCCESS");
+			
+			// alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+
+var date_lastlogin = new Date();
+localStorage.setItem('date_lastlogin', date_lastlogin);
+	
+$.each(data, function(key, value) {
+console. log ('item', key, value);
+
+//output += "<li><a href=\"#\">" + value.Client_ID;  
+//output += " " + value.Contact_First + " " + value.Contact_Last + "</a></li>";
+
+
+// for app tmp
+//localStorage.setItem("nowwid", value.wid);
+localStorage.setItem("nowcid", value.cid);
+
+//localStorage.setItem("dr_wid", value.wid);
+localStorage.setItem("co_cid", value.cid);
+localStorage.setItem("co_login", value.login);
+localStorage.setItem("co_pass", value.pass);
+localStorage.setItem("co_name", value.co_name);
+localStorage.setItem("co_first", value.first);
+localStorage.setItem("co_last", value.last);
+localStorage.setItem("co_phone", value.phone);
+localStorage.setItem("co_email", value.email);
+
+//
+window.location.replace("co-geo-recent.html");
+
+//co-geo-recent.html co-dashboard
+// new go to rt check
+//window.location.replace("random-tests-completecheck-inc.html");
+//window.location.replace("login-test-check.html");
+		
+});
+			//$('#response2').html(data);
+		}).fail(function() {
+		
+			// just in case posting your form failed
+			$('#response').html("Login Failed. Please try again");
+			//alert( "Posting failed." );
+			
+		});
+
+		// to prevent refreshing the whole page page
+		return false;
+	
+//}
+
+        
+    },
+/*			
+showErrors: function(errorMap, errorList) {
+// this prevents errors showing
+		
+		//code that should happen after validation if errors are found goes here
+        //alert ("no success yet");
+}			
+*/			
+});
+       //alert ("test3");
+}
+
+);
+
+//alert("test4");
+
+</script>
+
+
+
+<script>
+
+// pre populate
+
+if (localStorage.getItem("login") !=""){
+document.forms['nowform'].elements['login'].value = localStorage.getItem("co_login");
+}
+
+
+//document.forms['nowform'].elements['webpass'].value = localStorage.getItem("cl_emp_Drivers_License_No");
+
+//
+
+if (localStorage.getItem("password") !=""){
+document.forms['nowform'].elements['pass'].value = localStorage.getItem("co_pass");
+}
+
+
+
+// tmp see document.getElementById('webpass22').textContent = localStorage.getItem("password");
+ 
+//document.forms['nowform'].elements['PUC_Number'].value = localStorage.getItem("PUC_Number");
+
+
+</script>
+
+
+
+
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+
+<!--
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+<div class="ui-grid-c boxblue">
+
+</div>
+</footer> -->
+<!--add footer -->
+<!-- /footer -->
+
+</body>
+</html>

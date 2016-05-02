@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geo App LIST RECENT Locations</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ <script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.thinbox {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	/*width: 133px;*/
+	}
+.thinbox old {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	width: 133px;	
+}
+</style>  
+<script>
+//clear first
+//localStorage.setItem("rt_completecheck", "");
+</script>
+</head>
+<body>
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+<div class="box1 center1 boxblue" >
+<a href="index.html" rel="external"><img src="app-logo-banner-320x60.png" width="300" height="60" border="0"></a>
+</div>
+
+
+<!--<h1>Page head Title</h1> -->
+</div><!-- /header -->
+
+<section id="page01111" data-role="page">
+
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+<!--INSERT START -->
+
+<a rel="external" href="co-dashboard.html" class="buttonlink2 center1">return</a> <br>
+
+<br>
+
+<a rel="external" href="co-add-new-worker.html" class="buttonlink2 center1">ADD NEW WORKER</a> <br>
+<!--
+<a rel="external" href="company-list-all.html" class="buttonlink2 center1">All Companies</a>
+
+<br><br>
+ -->
+<!-- 
+<a rel="external" href="geo-add-button.html" class="buttonlink2 center1">NEW GEO LOCATION</a> <br>
+ -->
+<div>
+</div>
+<!--
+<br>
+
+RECENT Geo LISTINGS FOR:<br>
+
+<span class="print_data_22_b">
+
+<span id="nowconame"></span> (CID 
+<span id="nowcid"></span> )
+
+</span><br>
+<br>
+<br>
+
+
+ -->
+
+
+
+Company Active Worker List FOR:<br>
+
+<strong>
+<span class="cap1">
+<span id="co_name"></span><br>
+
+<span id="co_first"></span> <span id="co_last"></span>
+</span></strong>
+
+<span class="print_data_22_b">
+
+
+
+</span><br>
+<br>
+<br>
+
+
+
+
+
+
+
+<div align="center">
+
+<!--
+width="1200"
+<div id="list" data-role="listview"></div> -->
+
+
+
+
+
+<table  border="1" align="center" cellpadding="2" cellspacing="2" >
+
+ 
+
+<!-- table header
+
+width='200'
+ -->
+
+<thead>
+
+<tr>
+
+
+<!--<th class='thinbox' align="left" valign="top">Company Name</td> -->
+<th class='thinbox' align="left" valign="top">First</td>
+<th class='thinbox' align="left" valign="top">Last</td>
+
+<th class='thinbox' align="left" valign="top">WID</td>
+
+<th class='thinbox' align="left" valign="top">CID</td>
+<th class='thinbox'  align="left" valign="top">Show</td>
+<th class='thinbox'  align="left" valign="top">Edit</td>
+<th class='thinbox'  align="left" valign="top">yooooo</td>
+
+
+</tr>
+
+</thead>
+
+<tbody id="list" data-role="listview"></tbody>
+
+</table>
+
+
+
+</div>
+
+<br><br>
+
+
+<span class="print_data_22_b">
+
+<span id="rtshow"></span>
+
+</span>
+<br><br>
+
+11sssssss1 is <span id="yo1"></span>
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+<div class="ui-grid-c boxblue">
+<!--foot -->
+</div>
+</footer>
+
+
+<!-- /footer -->
+
+
+<!-- code for including header/footer -->
+    <script type="text/javascript">
+      
+      // we're ready, include away
+      $(window).ready(function(){
+        
+        // use easy AJAX jQuery helpers
+        
+		// head no work!!!!
+        // add header.html into <header>
+        $.get("header-inc.html", function(fileData){
+          $('header').html(fileData); 
+        });
+/*
+        // add footer.html into <footer>
+        $.get("footer-inc.html", function(fileData){
+          $('footer').html(fileData); 
+        });
+       
+	    */	   
+      });
+      
+</script>
+
+<script>
+
+//document.getElementById('Company').textContent = localStorage.getItem("Company");
+
+</script>
+
+
+
+
+<script>
+//var Client_ID = localStorage.getItem("Client_ID");
+	
+	// var Client_ID = 25658;
+	
+	//var webpass = localStorage.getItem("cl_emp_Drivers_License_No");
+
+//$.get("../app-data/geo-list.php?zip="+zip, function(data, status){			
+//$.post('https://idcapp.com/app-data/random-tests.php', {
+//$.post('../app-data/geo-list.php', {
+//co-all-js-04.php	
+	
+	
+//$.post('http://nmiapp.com/zgeo/app-data/co-wrk-list.php', {
+$.post('http://nmiapp.com/zgeo/app-data/co-all-js-04.php', {				 	
+		cid: localStorage.getItem("nowcid")
+		//webpass: webpass
+		
+		},
+function(data, status){
+	
+// alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+ 
+// YO how do i add in the $completecheck I hid inside the loop 
+
+//+ value.timestamp
+
+
+
+//"<td class='thinbox'><span class='thinbox9'>" + value.co_name + "</span></td>" + 				
+
+
+
+
+$.each(data, function(key, value) {
+            	console. log ('item', key, value);
+
+var nowts = new Date(Number(value.timestamp));				
+			
+output += "<tr>" + 
+
+
+"<td class='thinbox' align='left'><span class='thinbox9'>" + value.first + "</span></td>" + 
+"<td class='thinbox'><span class='thinbox9'>" + value.last + "</span></td>" + 
+"<td class='thinbox'><span class='thinbox9'>" + value.wid + "</span></td>" + 
+"<td class='thinbox'><span class='thinbox9'>" + value.cid + " - act " + value.action + " - ts " + value.timestamp + " - wid2 is " + value.wid2  + "</span></td>" +  
+"<td class='thinbox'><span class='thinbox9'>"  + 
+" <input type=button value=ShowGeo onClick='loc1(" + value.wid + ",\"" + value.first + " " + value.last + "\")'>" + "</span></td>"+
+"<td class='thinbox'><span class='thinbox9'>"  + 
+" <input type=button value=Edit onClick='loc2(" + value.wid + ",\"" + value.first + " " + value.last + "\")'>" + "</span></td>"+
+
+"<td class='thinbox'><span class='thinbox9'>" + "valu222222222e.cid" + "</span></td>" +  
+
+
+
+"</tr>";
+
+
+
+
+
+
+			});
+     
+            $('#list').html( output );
+            $('#list').listview( "refresh" );
+
+
+
+
+	});
+	
+
+</script>
+
+
+
+
+<script>
+
+
+$yo1 = '111';
+document.getElementById('yo1').textContent = '$yo1';
+
+//document.getElementById('nowcid').textContent = localStorage.getItem("nowcid");
+
+//document.getElementById('nowconame').textContent = localStorage.getItem("nowconame");
+
+
+</script>
+
+
+
+<script>
+document.getElementById('co_name').textContent = localStorage.getItem("co_name");
+document.getElementById('co_first').textContent = localStorage.getItem("co_first");
+document.getElementById('co_last').textContent = localStorage.getItem("co_last");
+
+</script>
+
+
+
+
+
+<script>
+
+//
+function loc1(wid, wrk_name){
+//function loc1(wid){	
+//alert(lat);
+//alert(lng);
+localStorage.setItem("nowwid", wid);
+localStorage.setItem("nowwrkname", wrk_name);
+//localStorage.setItem("nowlng", lng);
+//localStorage.setItem("nowlat", "34.1647988");
+//localStorage.setItem("nowlng", "-118.40474929999998");
+//alert("yo5");
+window.location.replace("co-geo-list-wrk-mobile.html");
+}
+
+</script>
+<script>
+
+function loc2(wid, wrk_name){
+//function loc1(wid){	
+//alert(lat);
+//alert(lng);
+localStorage.setItem("nowwid", wid);
+//localStorage.setItem("nowwrkname", wrk_name);
+//localStorage.setItem("nowlng", lng);
+//localStorage.setItem("nowlat", "34.1647988");
+//localStorage.setItem("nowlng", "-118.40474929999998");
+//alert("yo5");
+//window.location.replace("co-worker-update.html");
+
+
+//start get
+
+//alert("wid: " + localStorage.getItem("nowwid"));
+
+$.post(
+
+'http://nmiapp.com/zgeo/app-data/driver-get.php', {
+
+wid: localStorage.getItem("nowwid"),
+
+//login: login,
+//pass: pass,		
+		
+}, function(data){
+	
+	
+	//alert("2 " );
+			
+			// show the response
+			// bak $('#response').html(data);
+			// FIX THIS WITH BETTER SOON - do dbetter in php page
+			$('#response').html("SUCCESS");
+			
+			// alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+
+
+$.each(data, function(key, value) {
+console. log ('item', key, value);
+
+//output += "<li><a href=\"#\">" + value.Client_ID;  
+//output += " " + value.Contact_First + " " + value.Contact_Last + "</a></li>";
+
+
+// for app tmp
+//localStorage.setItem("nowwid", value.wid);
+
+/**/
+localStorage.setItem("nowcid", value.cid);
+
+localStorage.setItem("dr_wid", value.wid);
+localStorage.setItem("dr_cid", value.cid);
+localStorage.setItem("dr_login", value.login);
+localStorage.setItem("dr_pass", value.pass);
+localStorage.setItem("dr_first", value.first);
+localStorage.setItem("dr_last", value.last);
+localStorage.setItem("dr_phone", value.cellphone);
+localStorage.setItem("dr_email", value.email);
+localStorage.setItem("nowwrkname", value.first + " " + value.last);
+
+
+
+//
+window.location.replace("dr-driver-update.html");
+// new go to rt check
+//window.location.replace("random-tests-completecheck-inc.html");
+//window.location.replace("login-test-check.html");
+		
+});
+
+}).fail(function() {
+			// just in case posting your form failed
+			$('#response').html("Login Failed. Please try again");
+		//alert( "Posting failed." );
+
+			//$('#response2').html(data);
+		});
+		
+		// put these back i guess
+		// to prevent refreshing the whole page page
+		//return false;
+
+
+
+//end get
+
+
+
+
+
+
+
+
+
+}
+
+
+</script>
+
+
+  
+</body>
+</html>

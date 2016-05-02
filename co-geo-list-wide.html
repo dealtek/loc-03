@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geo App List Recent Locations</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ <script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.thinbox {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	/*width: 133px;*/
+	}
+.thinbox old {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	width: 133px;	
+}
+</style>  
+<script>
+//clear first
+//localStorage.setItem("rt_completecheck", "");
+</script>
+
+
+<script type="text/javascript" src="http://www.datejs.com/build/date.js"></script>
+
+
+
+</head>
+<body>
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+
+<div class="box1 center1 boxblue" >
+<a href="index.html" rel="external"><img src="app-logo-banner-320x60.png" width="300" height="60" border="0"></a>
+</div>
+
+
+<!--<h1>Page head Title</h1> -->
+</div><!-- /header -->
+
+<section id="page01111" data-role="page">
+
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+<!--INSERT START -->
+
+
+<table width="95%" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+
+
+<td><a rel="external" href="co-dashboard.html" class="ui-btn  ui-btn-a tsize1">Home<br><br></a> </td>
+<td><a rel="external" href="co-worker-list.html" class="ui-btn  ui-btn-a tsize1">Company<br>
+Workers</a> </td>
+<td><a href="co-geo-recent.html" class="ui-btn  ui-btn-a tsize1" rel="external">All Workers<br>
+Last Known Locations</a></td>
+<td><a href="co-geo-list-day.html" class="ui-btn  ui-btn-a tsize1" rel="external">ALL Workers<br>
+Recent Locations</a></td>
+<td><a href="co-comapny-update.html" class="ui-btn  ui-btn-a tsize1" rel="external">Update<br>
+Comapny Info</a></td>
+<td><a rel="external" href="co-add-new-worker.html" class="ui-btn  ui-btn-a tsize1">ADD<br>NEW WORKER</a></td>
+<td><a  href="co-logout.html" class="ui-btn  ui-btn-a tsize1" rel="external">Log<br>
+Out</a></td>
+</tr>
+</table>
+<br>
+
+
+<!--
+<a rel="external" href="co-dashboard.html" class="buttonlink2 center1">Home</a> <br>
+ -->
+<!--
+<a rel="external" href="geo-add-button.html" class="buttonlink2 center1">NEW GEO LOCATION</a> <br> -->
+
+<div>
+
+
+
+
+
+</div>
+
+RECENT Geo LISTINGS FOR:<br>
+
+<strong>
+<span class="cap1">
+<span id="co_name"></span><br>
+
+<span id="co_first"></span> <span id="co_last"></span>
+</span></strong>
+
+<span class="print_data_22_b">
+
+
+
+</span><br>
+<br>
+<br>
+
+<div align="center">
+
+<!--
+width="1200"
+<div id="list" data-role="listview"></div> -->
+
+
+
+
+
+<table  border="0" align="center" cellpadding="2" cellspacing="2" >
+
+ 
+
+<!-- table header
+
+width='200'
+ -->
+
+<thead>
+
+<tr>
+
+<!--<th class='thinbox' align="left" valign="top">Wrk ID</td>
+<th class='thinbox'  align="left" valign="top">GID</td> -->
+<th class='thinbox' align="left" valign="top">Name</td>
+
+<th class='thinbox' align="left" valign="top">Date</td>
+<th class='thinbox' align="left" valign="top">Time</td>
+<th class='thinbox' align="left" valign="top">Action</td>
+<th class='thinbox' align="left" valign="top">Address</td>
+
+
+
+
+
+</tr>
+
+</thead>
+
+<tbody id="list" data-role="listview"></tbody>
+
+</table>
+
+
+
+</div>
+
+<br><br>
+
+
+<span class="print_data_22_b">
+
+<span id="rtshow"></span>
+
+</span>
+<br><br>
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+<div class="ui-grid-c boxblue">
+<!--foot -->
+</div>
+</footer>
+
+
+<!-- /footer -->
+
+
+<!-- code for including header/footer -->
+    <script type="text/javascript">
+      
+      // we're ready, include away
+      $(window).ready(function(){
+        
+        // use easy AJAX jQuery helpers
+        
+		// head no work!!!!
+        // add header.html into <header>
+        $.get("header-inc.html", function(fileData){
+          $('header').html(fileData); 
+        });
+/*
+        // add footer.html into <footer>
+        $.get("footer-inc.html", function(fileData){
+          $('footer').html(fileData); 
+        });
+       
+	    */	   
+      });
+      
+</script>
+
+
+<script>
+
+	
+$.post('http://nmiapp.com/zgeo/app-data/co-geo-list-all-recent-v2.php', {
+	cid: localStorage.getItem("nowcid")
+	
+		},
+function(data, status){
+
+
+//alert("Data: ");
+	
+//alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+ 
+// YO how do i add in the $completecheck I hid inside the loop 
+
+//+ value.timestamp
+
+//start fun
+
+
+$spc = '<div class="vsp20"></div>';
+$widd = 'x';
+
+$datetest = 'x';
+
+$nu = 0;
+$nudate = 0;
+
+$.each(data, function(key, value) {
+            	console. log ('item', key, value);
+
+var nowts = new Date(Number(value.timestamp));
+
+
+	
+	if (value.wid != $widd){
+	
+	$widd = value.wid;
+	$nu = 1;
+	
+	$name = value.first +" "+ value.last +" ("+ value.wid +")";
+	
+	}
+
+
+
+if (value.newday != $datetest){
+	$datetest = value.newday
+	$nudate = 1;
+	$spc = '<div class="vsp20"></div>';
+	$showdate = value.newday;
+	
+	}
+
+var showtime =  ( nowts.toString("h:mm tt"));
+
+if (value.action == 'Arrive'){
+	//var kula = "<span class='print_data_22 fgreen'>";
+	var kula = "<span class='thinbox99 fgreen'>";
+	}else{
+	//var kula = "<span class='print_data_22 fblue'>";
+	var kula = "<span class='thinbox99 fblue'>";	
+	}
+		
+output += "<tr>" + 
+
+"<td class='thinbox99' align='left'><strong>"  + $spc +  $name  + "</strong><span class='thinbox999'></span></td>" + 
+
+"<td class='thinbox99' align='left'><span class='thinbox99 fgreen'><strong>"  + $spc +  $showdate  + "</strong></span></td>" + 
+
+"<td class='thinbox99' align='right'><span class='thinbox99'><strong>" + 
+$spc +
+showtime + "</strong></span></td>" + 
+
+"<td class='thinbox99' align='left'>" + kula + "<strong>" + $spc + value.action + "</strong></span></td>" + 
+
+<!--"<td class='thinbox99' align='left'><span class='thinbox99 fgreen'><strong>" + $spc + value.action + "</strong></span></td>" +  -->
+
+
+
+
+"<td class='thinbox99'><span class='thinbox99'>" + 
+
+$spc + value.address + "<strong></strong><br>" +  "</span></td>" +
++ "</tr>";
+
+
+// zero out
+$nu = 0;
+$name = '';
+$nudate = 0;
+$showdate = "";
+$spc = "";
+			});
+     
+            $('#list').html( output );
+            $('#list').listview( "refresh" );
+
+
+	});
+	
+
+</script>
+
+
+<!--
+
+map back soon
+
+" <input type=button value=map onClick='loc1(" + value.latitude + "," + value.longitude + "," + value.gid + "," + value.timestamp + "," + value.accuracy + ",\"" + value.action + "\")'>  "+"</span>" +
+ -->
+
+
+
+
+<script>
+document.getElementById('co_name').textContent = localStorage.getItem("co_name");
+document.getElementById('co_first').textContent = localStorage.getItem("co_first");
+document.getElementById('co_last').textContent = localStorage.getItem("co_last");
+
+</script>
+
+
+<script>
+
+function loc1(lat,lng,gid,ts,accuracy,action){
+localStorage.setItem("nowlat", lat);
+localStorage.setItem("nowlng", lng);
+localStorage.setItem("nowgid", gid);
+localStorage.setItem("nowgidts", ts);
+localStorage.setItem("nowaccuracy", accuracy);
+localStorage.setItem("nowaction", action);
+
+window.location.replace("show-location.html");
+}
+
+
+</script>
+
+
+  
+</body>
+</html>

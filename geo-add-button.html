@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geo App ADD Location</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<!-- -->
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+
+ <script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+input999
+{
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+	border: 1px solid #CCC;
+	padding: .2em;
+ 	margin: .2em 0;
+	
+}
+
+.label_16g999 {
+	color: #999999;
+	font-size: 16px;
+}
+
+.big24999 {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	background-color: #6290ee;
+	font-size: 24px;
+}
+
+.bigbutt999{ 
+
+/*no need use one below - ui-radio input override*/
+width: 6em; 
+height: 6em; 
+background-color: #6290ee;
+}
+
+.ui-radio input {
+	position: absolute;
+	left: .466em;
+	top: 50%;
+	width: 62px;
+	height: 62px;
+	margin: -11px 0 0 0;
+	outline: 0 !important;
+	z-index: 1;
+	background-color: #0C0;
+}
+
+
+
+
+
+</style>
+  
+</head>
+<body>
+
+<script>
+// no send until ready
+// nah no var ---- var sendready = "no";
+localStorage.setItem("sendready", 'no');
+//alert (sendready);
+</script>
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+<div class="box1 center1 boxblue" >
+<a href="index.html" rel="external"><img src="app-logo-banner-320x60.png" width="320" height="61" class="center" ></a>
+</div>
+<!--<h1>Page head Title</h1> -->
+</div><!-- /header -->
+
+<section id="page1" data-role="page">
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+      
+<!--INSERT START -->
+
+<form action="" method="post" name="thisform" id="thisform" >
+
+
+<table width="75%" border="0" align="center" cellpadding="4" cellspacing="4">
+<tr>
+<td colspan="2" align="center">
+<span class="print_data_22">
+
+
+Simple Geolocation Test <br><br>
+
+<table width="98%" border="0" cellspacing="2" cellpadding="2">
+<tr>
+<td>
+<a class="buttonlink7" href="index.html" rel="external"> <span class="bigfont2">HOME</span> </a></td>
+<td><a class="buttonlink7" href="geo-list-mobile.html" rel="external"> <span class="bigfont2">Recent Activity</span> </a>
+</td>
+<td><a href="javascript:location.reload(true)" class="buttonlink7">Refresh Geo Location</a>
+</td>
+</tr>
+</table>
+
+
+
+<br>
+
+<span class="print_data_22 fgreen" id="progress"></span>
+</strong>
+</span>
+</td>
+</tr>
+
+<tr>
+   
+<td colspan="2"  align="center">
+
+
+
+
+
+</td>
+</tr>
+
+
+<tr>
+<td colspan="2"  align="center" valign="top">
+
+
+
+</td>
+</tr>
+
+
+<tr>
+<td width="50%"  align="left" valign="top">
+
+
+
+
+<span id="action"></span></td>
+<td width="50%" align="left" valign="top">
+<br>
+
+
+  </td>
+</tr>
+
+
+
+
+</table>
+
+</form>
+
+<script>
+
+// onSuccess Callback
+// This method accepts a Position object, which contains the
+// current GPS coordinates
+//
+
+$("#show1").hide(1000);
+
+document.getElementById('progress').textContent = "Looking up Your Current Location... ";
+
+var onSuccess = function(position) {
+
+// just local so goes away right after
+// nah var sendready = "yes";
+//alert(sendready);
+  
+document.getElementById('progress').textContent = "These are the results showing the current location... ";
+
+// ok to send now
+localStorage.setItem("sendready", 'yes');
+
+// i guess var only good in block so move post here
+
+// use LS
+
+localStorage.setItem("Latitude", position.coords.latitude);
+localStorage.setItem("Longitude", position.coords.longitude);
+localStorage.setItem("Accuracy", position.coords.accuracy);
+localStorage.setItem("Timestamp", position.timestamp);
+localStorage.setItem("nowgeots", new Date(position.timestamp));
+// clear action - do on next page
+localStorage.setItem("Action", "");
+
+//go new here yo this works
+window.location.replace("show-location-save.html");
+
+};
+
+// onError Callback receives a PositionError object
+//
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+navigator.geolocation.getCurrentPosition(onSuccess, onError);
+</script>
+
+
+
+
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section>
+
+
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+	color: #993300;
+}
+a:active {
+	text-decoration: none;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+td {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+input {
+border-radius: 10px;
+}
+.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style4 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #666666;
+	font-size: 18px;
+}
+.style3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #666666;
+}
+.data1 {
+	color: #000033;
+	font-size: 14px;
+}
+.data2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000066;
+}
+.data2g {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	color: #003300;
+}
+.data2Title {
+	font-family: 'Sansita One', cursive;
+	font-size:24px;
+	font-color: #003300;
+	text-shadow: 4px 4px 4px #aaa;
+}
+.data2Title2 {
+	font-family: 'Sansita One', cursive;
+	font-size: 24px;
+	font-color: #003300;
+	text-shadow: 4px 4px 4px #aaa;
+	color: #0099FF;
+}
+.data2gspre {
+	
+	font-family: 'Droid Serif','Bree Serif','PT Serif', Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #003300;
+}
+
+.data2gs {
+	font-family: 'Droid Serif', 'Bree Serif', 'PT Serif', Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #666666;
+}
+.data3gs {
+	font-family: 'Droid Serif', 'Bree Serif', 'PT Serif', Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+	color: #666666;
+}
+.data2gsORIG {
+	
+	font-family: 'Droid Serif','Bree Serif','PT Serif', Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #003300;
+}
+.buyit {
+	font-family: 'Droid Serif','Bree Serif','PT Serif', Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #003300;
+	background-color: #f0e995;
+	border: thin solid #666666;
+}
+.data2b {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	color: #5351f6;
+}
+.data2bs {
+	font-family: 'Droid Serif', 'Bree Serif', 'PT Serif', Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+	color: #9425ca;
+}
+.white18 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #FFFFFF;
+}
+.print12 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+.print14 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+.row0 {
+    background-color: #ffffff;
+}
+
+.row1 {
+    background-color: #f0f0f0;
+}
+.red1 {
+	color: #FF0000;
+}
+.green1 {
+	color: #003300;
+}
+.blue1 {
+	color: #000066;
+}
+.blue-lite1 {
+	color: #0033CC;
+}
+.gold1 {
+	color: #FF6600;
+}
+.nonprintSOON {
+	display: none;
+}
+.ip-blue22 {
+font-size: 22px;
+color: #000066;
+}
+.ip-blue22g {
+	font-size: 22px;
+	color: #006600;
+}
+.ip-blue18 {
+	font-size: 18px;
+	color: #000066;
+}
+.ip-16green {
+	font-size: 16px;
+	color: #006600;
+}
+.ip-18green {
+	font-size: 18px;
+	color: #006600;
+}
+.ip-18 {
+	font-size: 18px
+}
+.ip-22 {
+	font-size: 22px;
+}
+.ip-20 {
+	font-size: 20px
+}
+.ip-16 {
+	font-size: 16px
+}
+.ip-14 {
+	font-size: 14px
+}
+.ip-blue20 {
+	font-size: 20px;
+	color: #000066;
+}
+.menu1 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+}
+.bk1 {
+	background-image: url(../../pix/bk3g.png);
+	background-repeat: repeat-x;
+}
+.bk0 {
+	background-image: url(../../pix/bk2-full.png);
+	background-repeat: repeat;
+}
+.bk02-fade1 {
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+}
+.bk02-fade1OLD {
+	background-image: url(../../pix/bkgrLR2b.png);
+	background-repeat: repeat-y;
+}
+.bk03-gr1 {
+	background-image: url(../../store-images/graph/graphene-spin-magnetic-clouds-img_assist-350x351.jpg);
+	background-repeat: repeat;
+}
+.bk01-back {
+	background-repeat: repeat;
+	background-color: #333333;
+	background-image: url(../../store-images/graph/graphene-spin1.jpg);
+}
+.bk01a-back {
+	background-repeat: no-repeat;
+	background-color: #333333;
+}
+.bk01-backOLD {
+	background-image: url(../../pix/bk01-back99.png);
+	background-repeat: repeat;
+	background-color: #e0d265;
+}
+.formfill {
+	font-family: Verdana, Geneva, sans-serif;
+	background-color: #ece9d8;
+	font-size: 14px;
+	color: #000066;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}

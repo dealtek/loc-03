@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+
+<title>Location App Driver Search Page</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript" src="http://www.datejs.com/build/date.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.thinbox {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	/*width: 133px;*/
+	}
+</style> 
+
+
+  
+</head>
+<body onload="initialize()">
+
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+<div class="box1 center1 boxblue" >
+<a href="dr-dashboard.html" rel="external"><img src="app-logo-banner-320x60.png" width="300" height="30" border="0"></a>
+</div>
+<!--add header -->
+</div>
+
+<!-- /header -->
+
+<section id="page01111" data-role="page">
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+      
+<!--INSERT START -->
+
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+<tr>
+<td colspan="3">
+
+<strong>
+<span class="cap1"></span>
+<span id="co_name"></span>
+</strong>
+
+<!--  -->
+
+
+<!-- css ------ 
+span {
+    display: none;
+} -->
+
+<span class="dataTinyBLK">
+(CID <span id="nowcid"></span>)
+</span>
+
+
+<strong>
+&nbsp;<span id="first"></span> <span id="last"></span>
+</strong>
+<span class="dataTinyBLK">
+(WID <span id="nowwid"></span>) 
+</span>
+
+</td>
+</tr>
+
+</table>
+
+
+<table  border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+<td colspan="3">
+
+
+</td>
+</tr>
+<tr>
+<td>
+
+
+<!--
+<input id="recent" type="button" class="buttonform2_24" name="recent" value= " - Toggle RECENT -" onClick="recent()" /> -->
+
+
+
+
+
+
+
+
+</td>
+<td>
+ 
+<!--
+<input id="Arrive" type="button" class="buttonform2_24" name="Arrive" value= "&nbsp;&nbsp;&nbsp;Arrive&nbsp;&nbsp;&nbsp;<br>
+<br>
+<br>
+" onClick="getgeo(event)" />
+ -->
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+</td>
+
+
+
+
+
+<td><!--
+
+<input id="Leave" type="button" class="buttonform2_24" name="Leave" value= "&nbsp;&nbsp;&nbsp;Leave&nbsp;&nbsp;&nbsp;<br>
+<br>
+<br>
+" onClick="getgeo(event)" /> -->
+
+</td>
+
+</tr>
+</table>
+
+<!--fgreen -->
+<span class="print_data_12" id="progress"></span>
+<br>
+
+
+</strong>
+</span>
+
+
+
+
+<!--<div class="boxheight1"> fun</div> -->
+
+
+<!-- part 2 -->
+
+
+ <div id="mappy">
+ <div id="map" style="height: 200px; width: 320px"></div>
+ </div>
+ 
+ 
+
+<div id="skippy">
+
+
+<!--we can just hide this w jquery - but we still need the code in the script -->
+
+<form id="locForm">
+<input name="" type="text" id="latlng" >
+<input id="sendit" type="button" value="Reverse Geocode" onclick="codeLatLng()">
+</form>
+</div>
+
+<!--part 2 more -->
+
+<div id="currentdisplay">
+
+<span class="print_data_22_b">
+<span class="print_data_28_b">
+<strong><span id = "actionchoice"></span></strong>: 
+
+<strong><span id="nowgidts"></span></strong><br>
+ <!--Current Address --> 
+</span>
+<span class="fgreen">
+<strong>
+
+<!--<br> -->
+
+<span class="print_data_28_b">
+ 
+<!--  -->
+<span id = "Address"></span>&nbsp; 
+
+ <!-- keep for line spacing so no jump -->
+<!--
+<br>
+<span id = "Address2"></span>
+
+<br> mo<br>
+ -->
+ 
+<div align="left" class="center1 boxblue99">
+ 
+<span id = "addr1"></span>&nbsp;<br>
+<span id = "addr2"></span><br>
+<span id = "addr3"></span> 
+<span id = "addr4"></span>
+</div> 
+
+
+</span>
+
+</strong><br>
+
+(Accuracy: <strong><span id="nowaccuracy"></span></strong>)
+
+
+</span>
+
+<!--<br>
+
+ran: <span id="ranny"></span>
+<br>
+lat <span id = "Latitude"></span> - LNG <span id = "Longitude"></span>
+
+ -->
+
+<br>
+
+<!--<strong><span id="nowgidts"></span></strong> -->
+
+</span>
+
+</span><!-- print22 -->
+
+<br>
+
+</div><!-- end currdisplay -->
+
+<!-- part 33  -->
+<!--need this -->
+<div id="tmp33">
+<input id="logthisnow" type="button" class="ui-btn ui-btn-d tsize1" name="submit" value= " - LOG THIS LOCATION - " onClick="testResults(this.form)" />
+</div>
+
+
+
+<div id="showrecent">
+
+<!--<br> -->
+
+<div align="center">
+
+
+<!-- PART 444444444 -->
+
+
+<table  border="0" align="center" cellpadding="0" cellspacing="0" >
+
+<thead>
+
+<tr>
+<th class='thinbox' align="center" valign="top">- Recent Locations - </td>
+
+
+</tr>
+
+</thead>
+
+<tbody id="list" data-role="listview"></tbody>
+
+</table>
+
+
+
+</div>
+
+<br><br>
+
+</div><!-- end recent -->
+
+
+<span class="print_data_22_b">
+
+<span id="rtshow"></span>
+
+</span>
+<br>
+
+
+
+<script>
+// PART 11111111111 get geo
+
+// onSuccess Callback
+// This method accepts a Position object, which contains the
+// current GPS coordinates
+//
+
+$("#show1").hide(1000);
+
+document.getElementById('progress').textContent = "Ready to Look up Your Current Location... ";
+
+var onSuccess = function(position) {
+
+
+// ok to send now - hmmm not needed anymore?
+localStorage.setItem("sendready", 'yes');
+
+// i guess var only good in block so move post here
+
+localStorage.setItem("Latitude", position.coords.latitude);
+localStorage.setItem("Longitude", position.coords.longitude);
+localStorage.setItem("Accuracy", position.coords.accuracy);
+localStorage.setItem("Timestamp", position.timestamp);
+localStorage.setItem("nowgeots", new Date(position.timestamp));
+// clear action - do on next page
+//localStorage.setItem("Action", "");
+
+// hint - no address exists yet!
+
+
+//document.getElementById('Latitude').textContent = localStorage.getItem("Latitude");
+//document.getElementById('Longitude').textContent = localStorage.getItem("Longitude");
+
+
+
+
+//post populate this is IMPORTANT - fills LAT LONG in form every time click new arrive - leave
+
+var a = document.getElementById("latlng");
+var latlngform = localStorage.getItem("Latitude") + "," + localStorage.getItem("Longitude")
+  a.value = latlngform;
+  
+//alert('form22 is '+latlngform);
+
+//alert(d1.toString('dddd, MMMM d, yyyy'));
+var gidts = new Date(Number(localStorage.getItem("Timestamp")));
+var showdatesingle =  ( gidts.toString("MM/dd"));
+var showtimesingle =  ( gidts.toString("h:mm tt"));
+document.getElementById('nowgidts').textContent = showdatesingle + " " + showtimesingle;
+//document.getElementById('nowgidts').textContent = gidts;
+//document.getElementById('Accuracy').textContent = localStorage.getItem("Accuracy");
+// too many dupes NOW v reg
+document.getElementById('nowaccuracy').textContent = Math.round(localStorage.getItem("Accuracy"));
+
+
+
+
+// now show new address
+
+if (localStorage.getItem("showlist") == "off"){
+$("#currentdisplay").show(500);
+}
+
+
+
+
+
+
+//document.getElementById('nowaction').textContent = localStorage.getItem("Action");
+
+
+
+//go new here yo this works
+// REAL YO window.location.replace("dr-show-location-save.html");
+
+//window.location.replace("dr-main.html"); all-01
+
+//window.location.replace("all-01.html");
+
+
+//new after success trigger part 2
+
+$("#sendit").trigger('click'); // get address
+
+
+
+};
+
+// onError Callback receives a PositionError object
+//
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+
+// this is magic action do line
+//navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+function getgeo(){
+// yo trigger part 1
+//clear - sometimes comes right back
+
+//alert("a");
+
+$("#currentdisplay").hide(100);
+
+
+localStorage.setItem("ranny", Math.floor(Math.random() * 99) + 1  );
+//document.getElementById('ranny').textContent = localStorage.getItem("ranny");
+
+localStorage.setItem("nowgeots", ""); // clear ts
+localStorage.setItem("Timestamp", ""); // new clear ts
+localStorage.setItem("nowgidts", "");
+localStorage.setItem("nowaccuracy", "");
+//localStorage.setItem("address_current", "");
+localStorage.setItem("Address", "");
+localStorage.setItem("Latitude", "");
+localStorage.setItem("Longitude", "");
+localStorage.setItem("Accuracy", "");
+localStorage.setItem("nowgeots", "");
+localStorage.setItem("Action", "");
+
+
+
+// nowaccuracy maybe dupe names
+
+document.getElementById('nowgidts').textContent = localStorage.getItem("nowgidts");
+document.getElementById('nowaccuracy').textContent = localStorage.getItem("nowaccuracy");
+//document.getElementById('address_current').textContent = localStorage.getItem("address_current");
+
+
+// try split string.split(separator,limit)
+//
+//
+document.getElementById('Address').textContent = localStorage.getItem("Address");
+
+//document.getElementById('Address').textContent = 'add1';
+
+document.getElementById('progress').textContent = "searching... ";
+
+//alert(event.target.name);
+
+
+// 3 actions work out
+localStorage.setItem("Action", event.target.name);
+
+if (localStorage.getItem("Action") == 'Arrive'){
+	//var kula = "<span class='print_data_22 fgreen'>";
+	//var singlekula = "<span class='thinbox99 fgreen'>";
+	
+document.getElementById("actionchoice").innerHTML = "<span class='thinbox99 fgreen'>" + localStorage.getItem("Action") + "</span>";
+	
+	}else{
+	//var kula = "<span class='print_data_22 fblue'>";
+	//var singlekula = "<span class='thinbox99 fblue'>";	
+	
+	document.getElementById("actionchoice").innerHTML = "<span class='thinbox99 fblue'>" + localStorage.getItem("Action") + "</span>";
+	}
+
+
+//document.getElementById("actionchoice").innerHTML = localStorage.getItem("<span class='thinbox99 fblue'>" + "Action");
+
+//document.getElementById("actionchoice").innerHTML = localStorage.getItem("Action");
+
+//document.getElementById("actionchoice").innerHTML = event.target.name;
+// main 
+navigator.geolocation.getCurrentPosition(onSuccess, onError);	
+}
+
+
+</script>
+
+<script>
+
+
+// PART 22 get Reverse geo
+
+
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+var marker;
+
+// initialize happens on load body - but maybe  later redo
+
+function initialize()
+{
+	
+// 04-24-16 (11-51-27 AM)
+localStorage.setItem("nowgeots", ""); // clear ts
+localStorage.setItem("Timestamp", ""); // clear ts
+localStorage.setItem("nowgidts", "");
+localStorage.setItem("nowaccuracy", "");
+//localStorage.setItem("address_current", "");
+localStorage.setItem("Address", "");
+localStorage.setItem("Latitude", "");
+localStorage.setItem("Longitude", "");	
+localStorage.setItem("Accuracy", "");
+localStorage.setItem("nowgeots", "");
+localStorage.setItem("Action", "");
+	
+	
+
+//alert("go1");
+
+// start list is off
+
+$("#showrecent").hide(0);
+
+$('#currentdisplay').hide(0);
+
+localStorage.setItem("showlist", "off");
+document.getElementById('progress').textContent = "Click to search...";
+
+
+// tmp set this so next will not error - later dump whole map
+localStorage.setItem("nowlat", "34.1647988");
+localStorage.setItem("nowlng", "-118.40474929999998");
+
+
+var nowlat = localStorage.getItem("nowlat");
+var nowlng = localStorage.getItem("nowlng");
+
+    geocoder = new google.maps.Geocoder();
+    map = new google.maps.Map(document.getElementById("map"),
+    {
+        zoom: 14,
+        center: new google.maps.LatLng(nowlat,nowlng),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+		
+		//me
+		//document.getElementById('address_current').textContent = results[0].formatted_address;
+		
+    });
+	
+	
+
+/// not here anymore????? $("#sendit").trigger('click');
+
+
+// start init search
+
+
+// nah not at first updatelist();
+
+
+// end init search
+
+	
+} // end init
+
+function codeLatLng()
+{
+    var input = document.getElementById("latlng").value;
+	
+	//alert(input);
+	
+    var latlngStr = input.split(",",2);
+    var lat = parseFloat(latlngStr[0]);
+    var lng = parseFloat(latlngStr[1]);
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({'latLng': latlng}, function(results, status)
+    {
+        if (status == google.maps.GeocoderStatus.OK)
+        {
+            if (results[0])
+            {
+				
+
+// new save address		
+				
+localStorage.setItem("Address", results[0].formatted_address);
+				
+// this works document.getElementById('address_current').textContent = results[0].formatted_address;
+
+
+//document.getElementById('address_current').textContent = localStorage.getItem("Address");
+
+
+//document.getElementById('Address').textContent = localStorage.getItem("Address");
+
+//9999999999999999999999999999999999999
+
+// call it
+addressParse(localStorage.getItem("Address"));
+
+
+/*
+var addy = localStorage.getItem("Address");
+var add1 = addy.split(',',1)
+var add2 = addy.split(',',-1)
+
+*/
+//localStorage.getItem("Address")
+
+
+
+
+//document.getElementById('Address').textContent = add1;
+//document.getElementById('Address2').textContent = add2;
+
+//document.getElementById('Address').textContent = 'localStorage.getItem("Address")';
+//found
+document.getElementById('progress').textContent = "";
+
+// yo try adding db save here
+
+// send to db
+$("#logthisnow").trigger('click');
+
+
+
+if (localStorage.getItem("sendready") == "yes"){
+
+	// hmmmmmmm $("#show1").show(1000);
+	}
+
+         
+// not here updatelist(); //call for list update
+
+// end db save
+
+				
+                map.setZoom(11);
+                marker = new google.maps.Marker(
+                {
+                    position: latlng,
+                    map: map
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+            }
+            else
+            {
+                alert("No results found");
+            }
+        }
+        else
+        {
+            alert("Geocoder failed due to: " + status);
+        }
+    });
+}
+
+
+//pre populate - this happens only 1st time - move for later - try to dump for pre pop - no need til after click arrive - leave - fix soon
+
+var a = document.getElementById("latlng");
+
+// this for show page var latlngform = localStorage.getItem("nowlat") + "," + localStorage.getItem("nowlng")
+
+
+
+var latlngform = localStorage.getItem("Latitude") + "," + localStorage.getItem("Longitude")
+  a.value = latlngform;
+  
+//alert('form is '+latlngform); Click to see..
+
+document.getElementById('Address').textContent = "";
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="showrecent"> -->
+
+
+<script>
+// now update list
+function updatelist(){
+
+// ALL PART 4 list results
+
+//var Client_ID = localStorage.getItem("Client_ID");
+	
+	// var Client_ID = 25658;
+	
+	//var webpass = localStorage.getItem("cl_emp_Drivers_License_No");
+
+//$.get("../app-data/geo-list.php?zip="+zip, function(data, status){			
+//$.post('https://idcapp.com/app-data/random-tests.php', {
+	
+	
+//dr-geo-list-recent geo-list-wrk	
+	
+$.post('http://nmiapp.com/zgeo/app-data/dr-geo-list-today.php', {	
+
+wid: localStorage.getItem("nowwid")
+	
+//$.post('../app-data/geo-list.php', {	 	
+		//Client_ID: Client_ID, 
+		//webpass: webpass
+		
+		},
+function(data, status){
+	
+// alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+ 
+// YO how do i add in the $completecheck I hid inside the loop 
+
+//+ value.timestamp
+
+/*
+"Latitude: " + value.latitude + "<br>" +
+"Longitude: " + value.longitude + "<br>" +
+"<br>Date: <br><strong>" + value.newday + '--' +  showtime + '--' + nowts + "</strong><br>" +
+
+*/
+
+
+//"<div id='showrecent'>" +
+
+
+$.each(data, function(key, value) {
+            	console. log ('item', key, value);
+
+
+var nowts = new Date(Number(value.timestamp));	
+
+var showtime =  ( nowts.toString("h:mm tt"));
+
+// new
+
+var showdateingle2 =  ( nowts.toString("MM/dd"));
+var showtimesingle2 =  ( nowts.toString("h:mm tt"));
+
+
+
+
+
+
+
+
+	
+if (value.action == 'Arrive'){
+	var kula = "<span class='print_data_22 fgreen'>";
+	
+	}else{
+		var kula = "<span class='print_data_22 fblue'>";
+	}
+	
+//<span class='print_data_22 fgreen'>	
+
+/*
+
+" Date: <strong> " + value.newday + ' ' +  showtime +  ' nt ' +  value.notes +  ' ac ' +  value.accuracy + "</strong><br>" +
+"<strong>" + value.address + "</strong><br>" +
+"LAT: " + value.latitude + " LNG: " + value.longitude +
+
+"LAT: " + value.latitude + " LNG: " + value.longitude +
+*/
+
+// old was value.newday + ' ' +  showtime +
+
+	
+output += "<tr>" + 
+				
+
+"<td class='thinbox'><span class='thinbox9'>" + 
+kula + 
+"<strong>" + value.action + "</strong></span>" +
+
+
+" <strong> " + showdateingle2 + ' ' +  showtimesingle2 +  '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ac: ' +  Math.round(value.accuracy) + ")</strong><br>" +
+"<strong>" + value.address + "</strong><br>" +
+"</span></td>" + 
+
+
+ "</tr>";
+ 
+			});
+			
+//</div> <!--end show recent -->
+			
+			
+			
+			if (localStorage.getItem("showlist") == "on"){
+// show list if on
+
+//$("#showrecent").show(3000);
+//$('#list').show(3000);
+//updatelist();
+//alert("3");
+$('#list').html( output );
+
+$('#list').listview( "refresh" );
+
+			}
+			
+			
+			
+			/*
+			
+			
+			alert("1");
+     
+            $('#list').html( output );
+			
+			alert("2");
+            $('#list').listview( "refresh" );
+			*/
+			
+			//$('#list').hide(2000);
+			//$("#showrecent").hide(4000);
+
+	});
+	
+//document.getElementById('progress').textContent = "Click to Look up Your Current Location... ";
+//Click to search...
+document.getElementById('progress').textContent = "";
+
+}// end updatelist function
+
+
+
+</script>
+
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+
+<!-- -->
+
+<footer data-role="footer" class="boxheight1" data-position="fixed" data-theme="">
+<!--<div class="ui-grid-c boxblue">boxheight1 ui-barNAH
+</div> -->
+</footer>
+<!--add footer -->
+
+<!--foot -->
+<!-- /footer -->
+
+</body>
+</html>
+
+<!-- code for including header/footer -->
+    <script type="text/javascript">
+      
+      // we're ready, include away
+      $(window).ready(function(){
+        
+        // use easy AJAX jQuery helpers
+        
+		// header no work!!!!
+        // add header.html into <header>
+        $.get("header-inc.html", function(fileData){
+          $('header').html(fileData); 
+        });
+        // add footer.html into <footer>
+        $.get("footer-inc.html", function(fileData){
+          $('footer').html(fileData); 
+        });
+       
+	   /* */
+	   
+	   
+      });
+      
+    </script>
+ 
+
+<script>
+
+
+
+
+//$("#tmp33").show(4000);
+$("#tmp33").hide(0);
+	
+//$("#skippy").show(4000);
+$("#skippy").hide(0);
+
+//$("#mappy").show(4000);
+$("#mappy").hide(0);
+
+
+$("#currentdisplay").show(2000);
+//$("#currentdisplay").hide(0);
+/**/
+</script>
+
+<script>
+
+// send to db part 3
+
+function testResults (form) {
+
+// start post	
+	
+// show that something is loading
+		$('#responsepost').html("<b>Loading response...</b>");
+		
+		/*
+		 * 'post_receiver.php' - where you will pass the form data
+		 * $(this).serialize() - to easily read form data
+		 * function(data){... - data contains the response from post_receiver.php
+		 */
+
+
+//here new 
+
+var getstuff = localStorage.getItem("Latitude") + " - " + localStorage.getItem("Longitude") + " - " + localStorage.getItem("Accuracy") + " - " + localStorage.getItem("Timestamp") + " - " + localStorage.getItem("nowgeots") + " - " + localStorage.getItem("Action");
+
+//alert("getstuff  " + getstuff);
+	 
+//$.post('https://idcapp.com/app-data/client-update-number.php', {
+	
+//$.post('../app-data/geo-add.php', {
+	// no ssl here
+$.post('http://nmiapp.com/zgeo/app-data/dr-geo-add.php', {
+//$.post('zgeox.html', {
+
+address: 	localStorage.getItem("Address"),
+latitude: 	localStorage.getItem("Latitude"),
+longitude: 	localStorage.getItem("Longitude"),
+accuracy: 	localStorage.getItem("Accuracy"),
+timestamp: 	localStorage.getItem("Timestamp"),
+nowgeots: 	localStorage.getItem("nowgeots"),
+action: 	localStorage.getItem("Action"),
+notes:		localStorage.getItem("ranny"),	
+cid:		localStorage.getItem("nowcid"),	
+wid:		localStorage.getItem("nowwid")
+
+// there was cid and wid - maybe dump
+	
+}, function(data){
+			
+			// show the response
+			$('#responsepost').html(data);
+			
+			
+			updatelist(); //call for list update here - you after successful post!
+			
+			
+			//
+			//alert( "Posting yo." + getstuff);
+// no need
+			
+			//$('#response2').html(data);
+			
+			//dr-geo-list-mobile.html
+		//window.location.replace("geo-list-wrk-mobile.html");
+		// BACK SOON OR JUST STAY HERE window.location.replace("dr-geo-list-mobile.html");
+		}).fail(function() {
+		
+			// just in case posting your form failed
+			alert( "Posting failed." );
+			
+		});
+
+		// to prevent refreshing the whole page page
+		return false;
+
+
+//window.location.replace("new-client-application-register3.html");
+		
+			
+	
+}
+</script>
+
+
+
+
+
+<script>
+/*
+function loc1(lat,lng,gid,ts,accuracy,action){
+
+localStorage.setItem("nowlat", lat);
+localStorage.setItem("nowlng", lng);
+localStorage.setItem("nowgid", gid);
+localStorage.setItem("nowgidts", ts);
+localStorage.setItem("nowaccuracy", accuracy);
+localStorage.setItem("nowaction", action);
+localStorage.setItem("nowwrkname", localStorage.getItem("dr_first") + " " + localStorage.getItem("dr_last"));
+
+window.location.replace("show-location.html");
+}
+*/
+
+</script>
+
+<script>
+
+document.getElementById('nowcid').textContent = localStorage.getItem("nowcid");
+//document.getElementById('nowconame').textContent = localStorage.getItem("nowconame");
+document.getElementById('nowwid').textContent = localStorage.getItem("nowwid");
+//document.getElementById('nowwrkname').textContent = localStorage.getItem("nowwrkname");
+
+
+document.getElementById('first').textContent = localStorage.getItem("dr_first");
+document.getElementById('last').textContent = localStorage.getItem("dr_last");
+
+document.getElementById('co_name').textContent = localStorage.getItem("co_name");
+
+
+</script>
+
+
+
+
+
+
+
+<script>
+
+// 1st set var
+
+function recent(){
+if (localStorage.getItem("showlist") == "on"){
+localStorage.setItem("showlist", "off");	
+// now don't show list
+//$("#showrecent").show(4000);
+//$("#showrecent").hide(4000);
+
+//$('#list').hide(2000);
+//alert('off');
+}else{	
+localStorage.setItem("showlist", "on");	
+//$("#showrecent").show(4000);
+//alert('off');		
+}
+
+// now list
+
+if (localStorage.getItem("showlist") == "on"){
+// show list if on
+
+updatelist();
+
+$("#showrecent").show(1000);
+$('#list').show(1000);
+
+
+
+
+$('#currentdisplay').hide(1000);
+
+
+
+
+
+//alert("3");
+//$('#list').html( output );
+
+//$('#list').listview( "refresh" );
+
+
+}else{
+$('#list').hide(1000);
+$("#showrecent").hide(1000)	
+$('#currentdisplay').show(1000);
+	}
+
+
+}
+
+//alert('dddddd');
+</script>
+
+
+
+<script>
+
+
+
+function addressParse(address) {
+	//var str = "12219 Hesby St, North Hollywood, CA 91607, USA";
+
+    //var str = "Hello1 world, welcome to the welcome world universe world.";
+	//var str = "12219 Hesby St, North Hollywood, CA 91607, USA";
+	var str = address;	
+    var addsub0 = str.indexOf(",");
+	var addsub1 = str.indexOf(",",addsub0+1);
+	var addsub2 = str.indexOf(",",addsub1+1);
+	var addsub3 = str.indexOf(",",addsub2+1);
+	
+	
+	 //var str = "Hello world!";
+    var res = str.substring(0, addsub0);
+    document.getElementById("addr1").innerHTML = res + "";
+	
+	var res2 = str.substring(addsub0+ 1, addsub1);
+    document.getElementById("addr2").innerHTML = res2 + "";
+	
+	var res3 = str.substring(addsub1+ 1, addsub2);
+    document.getElementById("addr3").innerHTML = res3 + ",";
+	
+	var res4 = str.substring(addsub2+ 1, str.length);
+    document.getElementById("addr4").innerHTML = res4;
+	
+	
+    //document.getElementById("demo").innerHTML = n + '--' + nn;
+}
+</script>
+
+
+
+
+    

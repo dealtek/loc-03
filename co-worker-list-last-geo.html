@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geo App LIST RECENT Locations</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ <script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.thinbox {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	/*width: 133px;*/
+	}
+.thinbox old {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	width: 133px;	
+}
+</style>  
+<script>
+//clear first
+//localStorage.setItem("rt_completecheck", "");
+</script>
+</head>
+<body>
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+<div class="box1 center1 boxblue" >
+<a href="index.html" rel="external"><img src="app-logo-banner-320x60.png" width="300" height="60" border="0"></a>
+</div>
+
+
+<!--<h1>Page head Title</h1> -->
+</div><!-- /header -->
+
+<section id="page01111" data-role="page">
+
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+<!--INSERT START -->
+
+<a rel="external" href="index.html" class="buttonlink2 center1">return</a> <br>
+
+<a rel="external" href="company-list-all.html" class="buttonlink2 center1">All Companies</a>
+<!--
+<br><br>
+
+<a rel="external" href="geo-add-button.html" class="buttonlink2 center1">NEW GEO LOCATION</a> <br> -->
+
+<div>
+</div>
+
+<br>
+
+RECENT Geo LISTINGS FOR:<br>
+
+<span class="print_data_22_b">
+
+<span id="nowconame"></span> (CID 
+<span id="nowcid"></span> )
+
+</span><br>
+<br>
+<br>
+
+<div align="center">
+
+<!--
+width="1200"
+<div id="list" data-role="listview"></div> -->
+
+
+
+
+
+<table  border="1" align="center" cellpadding="2" cellspacing="2" >
+
+ 
+
+<!-- table header
+
+width='200'
+ -->
+
+<thead>
+
+<tr>
+
+
+<th class='thinbox' align="left" valign="top">Wrk ID</td>
+<th class='thinbox' align="left" valign="top">First</td>
+<th class='thinbox' align="left" valign="top">Last</td>
+
+<th class='thinbox' align="left" valign="top">GID</td>
+
+<th class='thinbox' align="left" valign="top">Action</td>
+<th class='thinbox' align="left" valign="top">Address</td>
+<th class='thinbox'  align="left" valign="top">Show</td>
+
+
+
+
+</tr>
+
+</thead>
+
+<tbody id="list" data-role="listview"></tbody>
+
+</table>
+
+
+
+</div>
+
+<br><br>
+
+
+<span class="print_data_22_b">
+
+<span id="rtshow"></span>
+
+</span>
+<br><br>
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+<div class="ui-grid-c boxblue">
+<!--foot -->
+</div>
+</footer>
+
+
+<!-- /footer -->
+
+
+<!-- code for including header/footer -->
+    <script type="text/javascript">
+      
+      // we're ready, include away
+      $(window).ready(function(){
+        
+        // use easy AJAX jQuery helpers
+        
+		// head no work!!!!
+        // add header.html into <header>
+        $.get("header-inc.html", function(fileData){
+          $('header').html(fileData); 
+        });
+/*
+        // add footer.html into <footer>
+        $.get("footer-inc.html", function(fileData){
+          $('footer').html(fileData); 
+        });
+       
+	    */	   
+      });
+      
+</script>
+
+<script>
+
+//document.getElementById('Company').textContent = localStorage.getItem("Company");
+
+</script>
+
+
+
+
+<script>
+//var Client_ID = localStorage.getItem("Client_ID");
+	
+	// var Client_ID = 25658;
+	
+	//var webpass = localStorage.getItem("cl_emp_Drivers_License_No");
+
+//$.get("../app-data/geo-list.php?zip="+zip, function(data, status){			
+//$.post('https://idcapp.com/app-data/random-tests.php', {
+//$.post('../app-data/geo-list.php', {
+$.post('http://nmiapp.com/zgeo/app-data/co-wrk-list-last-geo.php', {
+		//cid: 1
+		cid: localStorage.getItem("nowcid")
+		//webpass: webpass
+		
+		},
+function(data, status){
+	
+// alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+ 
+
+
+//+ value.timestamp
+
+$.each(data, function(key, value) {
+            	console. log ('item', key, value);
+
+var nowts = new Date(Number(value.timestamp));				
+			
+output += "<tr>" + 
+
+"<td class='thinbox'><span class='thinbox9'>" + value.wid + "</span></td>" + 				
+
+"<td class='thinbox' align='left'><span class='thinbox9'>" + value.first + "</span></td>" + 
+"<td class='thinbox'><span class='thinbox9'>" + value.last + "</span></td>" + 
+"<td class='thinbox'><span class='thinbox9'>" + value.geogid + "</span></td>" + 
+"<td class='thinbox'><span class='thinbox9'>" + value.action + "</span></td>" +  
+"<td class='thinbox'><span class='thinbox9'>" + value.address + "</span></td>" +  
+"<td class='thinbox'><span class='thinbox9'>"  + 
+
+
+" <input type=button value=ShowGeo onClick='loc1(" + value.wid + ",\"" + value.first + " " + value.last + "\")'>" + 
+
+
+
+  "</span></td>" +
+
+"</tr>";
+			});
+     
+            $('#list').html( output );
+            $('#list').listview( "refresh" );
+
+
+	});
+	
+
+</script>
+
+
+<script>
+
+document.getElementById('nowcid').textContent = localStorage.getItem("nowcid");
+
+document.getElementById('nowconame').textContent = localStorage.getItem("nowconame");
+
+
+</script>
+
+<script>
+
+//
+function loc1(wid, wrk_name){
+//function loc1(wid){	
+//alert(lat);
+//alert(lng);
+localStorage.setItem("nowwid", wid);
+localStorage.setItem("nowwrkname", wrk_name);
+//localStorage.setItem("nowlng", lng);
+//localStorage.setItem("nowlat", "34.1647988");
+//localStorage.setItem("nowlng", "-118.40474929999998");
+//alert("yo5");
+window.location.replace("geo-list-wrk-mobile.html");
+}
+
+
+</script>
+
+
+  
+</body>
+</html>

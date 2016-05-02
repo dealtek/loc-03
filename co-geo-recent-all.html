@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>all recent</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<!--<script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script> -->
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+</style>
+
+
+
+
+
+</head>
+
+<body>
+
+
+ 
+
+
+<div class="box1 center1 boxblue" >
+<a href="co-dashboard.html" rel="external"><img class="center" src="app-logo-banner-320x60.png" width="300" height="60" border="0">
+</a>
+</div>
+
+<div class="center1">
+<span class="print_data_20">
+<strong>
+<span class="cap1">
+<span id="co_name"></span><br>
+<span id="co_first"></span> <span id="co_last"></span>
+</span></strong>
+<br><br>
+<span class="print_data_22"><strong>ALL RECENT LOCATIONS OF ACTIVE WORKERS</strong></span><br><br>
+</div>
+<div class="center1 print_data_22">
+
+
+
+
+<script>
+
+//var goto = "https://idcapp.com/app-data/pay/quickpay-log.php?pg=2&Client_ID=";
+
+
+var goto = "http://nmiapp.com/zgeo/app-data/co-geo-list-wide-all-recent-inc.php?cid=";
+
+//http://nmiapp.com/zgeo/app-data/co-geo-list-wide.php
+
+//var goto = "https://idcapp.com/app-data/pay/quickpay-log.php?Client_ID=";
+
+//var theid = localStorage.getItem("Client_ID");
+var theid2 = localStorage.getItem("Client_ID");
+
+var theid = localStorage.getItem("nowcid");
+
+
+//var theid33 = '45021';
+
+//var more = "mobileapp/";
+var x = document.createElement("IFRAME");
+    //x.setAttribute("src", "https://idcapp.com/" + more);
+	x.setAttribute("src", goto + theid);
+	x.style.width = 100+"%";
+	//x.style.height = 80+"%";
+	//x.style.height = 480+"px";
+	x.style.height = 550+"px";  // hmm how do 100% what is best num
+document.body.appendChild(x);
+</script>
+ 
+ 
+ </div>
+
+<script>
+// don't need all these just for test
+//document.getElementById('Client_ID').textContent = localStorage.getItem("Client_ID");
+//document.getElementById('Client_ID2').textContent = localStorage.getItem("Client_ID");
+//document.getElementById('id6').textContent = theid2;
+</script>
+
+
+
+<!--
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+
+</footer>
+
+ -->
+
+
+
+
+<!-- code for including header/footer -->
+    <script type="text/javascript">
+      
+     /* 
+	  
+	  // we're ready, include away
+      $(window).ready(function(){
+        
+        // use easy AJAX jQuery helpers
+        
+		// head no work!!!!
+        // add header.html into <header>
+        $.get("header-inc.html", function(fileData){
+          $('header').html(fileData); 
+        });
+        
+		
+		
+        // add footer.html into <footer>
+        $.get("footer-inc.html", function(fileData){
+          $('footer').html(fileData); 
+        });
+       
+	 
+	   
+	   
+      });
+      */
+    </script>
+
+
+
+
+
+<script>
+document.getElementById('co_name').textContent = localStorage.getItem("co_name");
+document.getElementById('co_first').textContent = localStorage.getItem("co_first");
+document.getElementById('co_last').textContent = localStorage.getItem("co_last");
+
+</script>
+
+
+</body>
+</html>

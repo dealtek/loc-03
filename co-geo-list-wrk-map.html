@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geo App List Recent Locations</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ <script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+    
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
+</script> 
+
+<style type="text/css">
+
+html, body, #map_canvas {
+    height: 500px;
+    width: 500px;
+    margin: 0px;
+    padding: 0px
+}
+</style>
+   
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.thinbox {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	/*width: 133px;*/
+	}
+.thinbox old {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	width: 133px;	
+}
+</style>  
+<script>
+//clear first
+//localStorage.setItem("rt_completecheck", "");
+</script>
+</head>
+<body>
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+<div class="box1 center1 boxblue" >
+<a href="index.html" rel="external"><img src="app-logo-banner-320x60.png" width="300" height="60" border="0"></a>
+</div>
+
+
+<!--<h1>Page head Title</h1> -->
+</div><!-- /header -->
+
+<section id="page01111" data-role="page">
+
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+<!--INSERT START -->
+
+
+
+<table width="95%" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+<td><a rel="external" href="co-dashboard.html" class="ui-btn  ui-btn-a tsize1">Home<br><br></a> </td>
+<td><a rel="external" href="co-worker-list.html" class="ui-btn  ui-btn-a tsize1">Company<br>
+Workers</a> </td>
+
+<td><a href="co-geo-recent.html" class="ui-btn  ui-btn-a tsize1" rel="external">All Workers<br>
+Last Known Locations</a></td>
+<td><a href="co-geo-list-day.html" class="ui-btn  ui-btn-a tsize1" rel="external">ALL Workers<br>
+Recent Locations</a></td>
+<td><a href="co-comapny-update.html" class="ui-btn  ui-btn-a tsize1" rel="external">Update<br>
+Comapny Info</a></td>
+<td><a rel="external" href="co-add-new-worker.html" class="ui-btn  ui-btn-a tsize1">ADD<br>NEW WORKER</a></td>
+<td><a  href="co-logout.html" class="ui-btn  ui-btn-a tsize1" rel="external">Log<br>
+Out</a></td>
+</tr>
+</table>
+
+
+<!--
+loc2 is 
+<span id="loc2"></span>
+
+ -->
+
+
+
+<span class="print_data_20">
+
+<strong>
+<span class="cap1">
+<span id="co_name"></span> 
+ 
+(<span id="co_first"></span> <span id="co_last"></span>)
+</span></strong>
+
+
+<br>
+
+
+
+RECENT Loation LISTINGS FOR:<br>
+
+<span class="print_data_22_b">
+
+
+<strong>
+<span id="nowwrkname"></span>
+</strong>
+
+ (rec count: <span id="rec_count"></span>)
+
+<!--<span id="Company"></span> -->
+
+</span>
+
+
+<div align="center">
+
+<br>
+
+<div id="map_canvas" style="width:750px; height:450px; border: 2px solid #3872ac;"></div>
+
+
+
+<br><br>
+
+
+
+<table  border="0" align="center" cellpadding="0" cellspacing="0" >
+
+ 
+
+<thead>
+
+<tr>
+
+<!--<th class='thinbox' align="left" valign="top">Wrk ID</td> -->
+<th class='thinbox' align="left" valign="top">Action</td>
+<!--<th class='thinbox' align="left" valign="top">Latitude</td>
+<th class='thinbox' align="left" valign="top">Longitude</td> -->
+
+<th class='thinbox'  align="left" valign="top">Address / Time Stamp</td>
+<th class='thinbox' align="left" valign="top">Accuracy</td>
+
+
+</tr>
+
+</thead>
+
+<tbody id="list" data-role="listview"></tbody>
+
+</table>
+
+
+
+</div>
+
+<br><br>
+
+
+<span class="print_data_22_b">
+
+<span id="rtshow"></span>
+
+</span>
+<br><br>
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+<div class="ui-grid-c boxblue">
+<!--foot -->
+</div>
+</footer>
+
+
+<!-- /footer -->
+
+
+<!-- code for including header/footer -->
+    <script type="text/javascript">
+      
+      // we're ready, include away
+      $(window).ready(function(){
+        
+        // use easy AJAX jQuery helpers
+        
+		// head no work!!!!
+        // add header.html into <header>
+        $.get("header-inc.html", function(fileData){
+          $('header').html(fileData); 
+        });
+/*
+        // add footer.html into <footer>
+        $.get("footer-inc.html", function(fileData){
+          $('footer').html(fileData); 
+        });
+       
+	    */	   
+      });
+      
+</script>
+
+
+
+<script>
+
+
+//var locations2 = [];
+
+//var locations3 = [];
+var cnt = 1;
+	
+$.post('http://nmiapp.com/zgeo/app-data/co-geo-list-wrk-map.php', {		
+
+wid: localStorage.getItem("nowwid"),		
+		},
+	
+function(data, status){
+	
+// alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+
+
+// works here
+var locations = new Array();
+//alert('1a '+locations);	
+
+$.each(data, function(key, value) {
+            	console. log ('item', key, value);
+
+var nowts = new Date(Number(value.timestamp));	
+
+var d = new Date(Number(value.timestamp));	
+
+//var d = new Date();
+//var day = days[d.getDay()];
+
+
+
+
+var dayslong = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+//document.getElementById("demo").innerHTML = days[d.getDay()];
+
+var dayname = days[d.getDay()];
+
+// new format
+var day = d.getDay(); // day of week
+var hr = d.getHours();
+var min = d.getMinutes();
+if (min < 10) {
+    min = "0" + min;
+}
+var ampm = hr < 12 ? " AM" : " PM";
+var hrmod = hr; 
+if (hr > 12){
+	hrmod = hr - 12
+	};
+var date = d.getDate();
+var month = d.getMonth() + 1;
+var year = d.getFullYear();
+
+
+var dateshow1 = month  + "/" + date  + " " + hrmod + ":" + min + ampm ;
+
+
+var thisadd = value.address;
+
+var get1 = thisadd.split(",");
+var getstr = get1[0];
+var getcity = get1[1];
+var getstatezip = get1[2];
+
+var getstate = getstatezip.substring(0, 3);
+
+var nowurl = 'http://maps.google.com?q=' + value.latitude + ',' + value.longitude;
+	
+//newloc = [value.action + ' ' + dateshow1 + ' Location '+ cnt , '' + getstr + ", " + getcity + '',nowurl ];
+
+//newloc = [value.action ' Location ' + cnt + ' ' + dateshow1 , '' + getstr + ", " + getcity + '',nowurl ];	
+
+newloc = [value.action + ' Location '+ cnt + ' - ' + dateshow1, '' + getstr + ", " + getcity + '',nowurl ];
+	
+
+locations.push(newloc);
+
+// this for google general area // make better soon
+
+localStorage.setItem("lastlat", value.latitude);
+localStorage.setItem("lastlng", value.longitude);
+//var lastlat = value.latitude;
+//var lastlng = value.longitude;
+
+
+//
+var address_mod = value.address;
+
+var address_mod = address_mod.replace(", USA", "");
+
+//alert(address_mod);
+output += "<tr>" + 
+			
+<!--"<td class='thinbox'><span class='thinbox9'>" + value.wid + "</span></td>" +  -->
+"<td valign='top' class='thinbox' align='left'><span class='thinbox9'><span class='fgreen'><strong>" + value.action + "</strong></span></span></td>" + 
+
+
+/*
+"<td class='thinbox' align='left'><span class='thinbox9'>" + value.latitude + "</span></td>" + 
+"<td class='thinbox'><span class='thinbox9'>" + value.longitude + "</span></td>" + 
+*/
+
+
+"<td class='thinbox'><span class='thinbox9'><strong><span class='blue1'>"  + address_mod + "</span></strong><br>" + dayname + ' ' + dateshow1 + "</span></td>" +
+
+"<td valign='top' class='thinbox'><span class='thinbox9'>" + 
+Math.round(value.accuracy) + "</span></td>"
++ "</tr>";
+
+
+//+ nowts + " -- " + dateshow1 +
+
+cnt++;
+			});
+
+//alert ('rec count'+data.length);
+document.getElementById('rec_count').textContent = data.length;
+     
+            $('#list').html( output );
+            $('#list').listview( "refresh" );
+
+/*
+var locations9 = [
+    ['Location 1 Name', 'New York, NY', 'Location 1 URL'],
+    ['Location 2 Name', 'Newark, NJ', 'Location 2 URL'],
+    ['Location 3 Name', 'Philadelphia, PA', 'Location 3 URL']
+];
+
+
+
+var locations = [
+    ['Location 1 Name', 'New York, NY', 'http://maps.google.com/maps?&z=10&q=36.26577+-92.54324&ll=36.26577+-92.54324'],
+    ['Location 2 Name', 'Newark, NJ', 'http://maps.google.com/maps?&z=10&q=36.26577+-92.54324&ll=36.26577+-92.54324'],
+    ['Location 3 Name', 'Philadelphia, PA', 'http://maps.google.com/maps?&z=10&q=36.26577+-92.54324&ll=36.26577+-92.54324']
+];
+
+
+
+
+
+
+
+var locations = [
+    ['Location 1 Name', '12426 Otsego St, CA', 'Location 1 URL'],
+    ['Location 2 Name', '5049 Bellingham Ave, CA', 'Location 2 URL'],
+    ['Location 3 Name', '12225 Hesby St, CA', 'Location 3 URL']
+];
+
+*/
+
+console.log ('array locations ', locations);
+
+
+//console.log ('array99 ', locations9);
+//alert('bbb '+locations);
+
+//alert('lattt '+lastlat);
+var lastlat = localStorage.getItem("lastlat");
+var lastlng = localStorage.getItem("lastlng");
+
+//alert('lattt '+lastlat + ' ' +lastlng);
+
+
+var geocoder;
+var map;
+var bounds = new google.maps.LatLngBounds();
+
+function initialize() {
+    map = new google.maps.Map(
+    document.getElementById("map_canvas"), {
+		
+		// calc best lat long from 1st rec soon!!!!
+        //center: new google.maps.LatLng(37.4419, -122.1419),
+		center: new google.maps.LatLng(lastlat, lastlng),
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    geocoder = new google.maps.Geocoder();
+
+    for (i = 0; i < locations.length; i++) {
+
+
+        geocodeAddress(locations, i);
+    }
+}
+google.maps.event.addDomListener(window, "load", initialize);
+
+function geocodeAddress(locations, i) {
+    var title = locations[i][0];
+    var address = locations[i][1];
+    var url = locations[i][2];
+    geocoder.geocode({
+        'address': locations[i][1]
+    },
+
+    function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var marker = new google.maps.Marker({
+                icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+                map: map,
+                position: results[0].geometry.location,
+                title: title,
+                animation: google.maps.Animation.DROP,
+                address: address,
+                url: url
+            })
+            infoWindow(marker, map, title, address, url);
+            bounds.extend(marker.getPosition());
+            map.fitBounds(bounds);
+        } else {
+            alert("geocode of " + address + " failed:" + status);
+        }
+    });
+}
+
+function infoWindow(marker, map, title, address, url) {
+    google.maps.event.addListener(marker, 'click', function () {
+        var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>View location</a></p></div>";
+        iw = new google.maps.InfoWindow({
+            content: html,
+            maxWidth: 350
+        });
+        iw.open(map, marker);
+    });
+}
+
+function createMarker(results) {
+    var marker = new google.maps.Marker({
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+        map: map,
+        position: results[0].geometry.location,
+        title: title,
+        animation: google.maps.Animation.DROP,
+        address: address,
+        url: url
+    })
+    bounds.extend(marker.getPosition());
+    map.fitBounds(bounds);
+    infoWindow(marker, map, title, address, url);
+    return marker;
+}
+
+
+
+
+
+// END ALL ELSE
+}); // END BIG FUNCT
+	
+
+
+</script>
+
+
+<br><br>
+
+
+
+
+
+
+<br>
+loc1 is 
+<span id="loc1"></span>
+
+test<br><br>
+
+<script>
+
+
+
+
+
+//alert('bbb '+locations);
+
+
+</script>
+<script>
+
+
+
+
+
+
+//new	
+//document.getElementById('loc1').textContent = locations;
+
+
+
+
+
+
+
+
+
+
+document.getElementById('nowwrkname').textContent = localStorage.getItem("nowwrkname");
+document.getElementById('co_name').textContent = localStorage.getItem("co_name");
+document.getElementById('co_first').textContent = localStorage.getItem("co_first");
+document.getElementById('co_last').textContent = localStorage.getItem("co_last");
+
+</script>
+
+
+
+</script>
+
+
+
+
+  
+</body>
+</html>

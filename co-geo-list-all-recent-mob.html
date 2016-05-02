@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geo App List Recent Locations</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ <script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.thinbox {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	/*width: 133px;*/
+	}
+.thinbox old {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	width: 133px;	
+}
+</style>  
+<script>
+//clear first
+//localStorage.setItem("rt_completecheck", "");
+</script>
+</head>
+<body>
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+<div class="box1 center1 boxblue" >
+<a href="index.html" rel="external"><img src="app-logo-banner-320x60.png" width="300" height="60" border="0"></a>
+</div>
+
+
+<!--<h1>Page head Title</h1> -->
+</div><!-- /header -->
+
+<section id="page01111" data-role="page">
+
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+<!--INSERT START -->
+
+<table width="95%" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+<td></td>
+<td>
+
+<a rel="external" href="co-dashboard.html" class="buttonlink2 center1">Home</a> <br>
+
+<a rel="external" href="co-worker-list.html" class="buttonlink2 center1">Company Workers</a>
+<br>
+<!--
+<a rel="external" href="company-list-all.html" class="buttonlink2 center1">All Companies</a>
+<br>
+<a rel="external" href="geo-add-button.html" class="buttonlink2 center1">NEW GEO LOCATION</a> -->
+
+</td>
+</tr>
+</table>
+
+
+RECENT Geo LISTINGS FOR:<br>
+
+<span class="print_data_22_b">
+
+
+<strong>
+<span id="nowconame"></span> </strong>(CID 
+<span id="nowcid"></span> )
+<br>
+
+
+<strong>
+<span id="nowwrkname"></span></strong>
+
+(WID <span id="nowwid"></span>)  
+
+<!--<span id="Company"></span> -->
+
+</span><br>
+
+
+<div align="center">
+
+<!--
+width="1200"
+<div id="list" data-role="listview"></div> -->
+
+
+
+
+
+<table  border="1" align="center" cellpadding="2" cellspacing="2" >
+
+ 
+
+<!-- table header
+
+width='200'
+ -->
+
+<thead>
+
+<tr>
+<th class='thinbox' align="center" valign="top">- RECORDS - </td>
+<!--<th class='thinbox' align="left" valign="top">ID</td>
+<th class='thinbox' align="left" valign="top">Action</td>
+<th class='thinbox' align="left" valign="top">Latitude</td>
+<th class='thinbox' align="left" valign="top">Longitude</td>
+<th class='thinbox' align="left" valign="top">Accuracy</td>
+<th class='thinbox'  align="left" valign="top">Time Stamp</td> -->
+
+</tr>
+
+</thead>
+
+<tbody id="list" data-role="listview"></tbody>
+
+</table>
+
+
+
+</div>
+
+<br><br>
+
+
+<span class="print_data_22_b">
+
+<span id="rtshow"></span>
+
+</span>
+<br><br>
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+<div class="ui-grid-c boxblue">
+<!--foot -->
+</div>
+</footer>
+
+
+<!-- /footer -->
+
+
+<!-- code for including header/footer -->
+    <script type="text/javascript">
+      
+      // we're ready, include away
+      $(window).ready(function(){
+        
+        // use easy AJAX jQuery helpers
+        
+		// head no work!!!!
+        // add header.html into <header>
+        $.get("header-inc.html", function(fileData){
+          $('header').html(fileData); 
+        });
+/*
+        // add footer.html into <footer>
+        $.get("footer-inc.html", function(fileData){
+          $('footer').html(fileData); 
+        });
+       
+	    */	   
+      });
+      
+</script>
+
+<script>
+
+//document.getElementById('Company').textContent = localStorage.getItem("Company");
+
+</script>
+
+
+
+
+<script>
+//var Client_ID = localStorage.getItem("Client_ID");
+	
+	// var Client_ID = 25658;
+	
+	//var webpass = localStorage.getItem("cl_emp_Drivers_License_No");
+
+//$.get("../app-data/geo-list.php?zip="+zip, function(data, status){			
+//$.post('https://idcapp.com/app-data/random-tests.php', {
+	
+//co-geo-list-recent.php geo-list-wrk
+
+$.post('http://nmiapp.com/zgeo/app-data/co-geo-list-all-recent.php', {	
+
+
+
+cid: localStorage.getItem("nowcid")
+	
+//$.post('../app-data/geo-list.php', {	 	
+		//Client_ID: Client_ID, 
+		//webpass: webpass
+		
+		},
+function(data, status){
+	
+// alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+ 
+// YO how do i add in the $completecheck I hid inside the loop 
+
+//+ value.timestamp
+
+$.each(data, function(key, value) {
+            	console. log ('item', key, value);
+
+var nowts = new Date(Number(value.timestamp));				
+			
+output += "<tr>" + 
+				
+
+"<td class='thinbox'><span class='thinbox9'>" + 
+
+
+"ID: <span class='print_data_22'>" +
+value.gid + " <input type=button value=Show1 onClick='loc1(" + value.latitude + "," + value.longitude + "," + value.gid + "," + value.timestamp + "," + value.accuracy + ",\"" + value.action + "\")'>  <br>"+"</span><br>" +
+"Action: <span class='print_data_22 fgreen'><strong>" + value.action + "</strong></span><br>" +
+"Address: <strong>" + value.address + "</strong><br>" +
+"Latitude: " + value.latitude + "<br>" +
+"Longitude: " + value.longitude + "<br>" +
+"Accuracy: " + value.accuracy + " (cid/wid: " + value.cid +"/"+ value.wid + ")<br>" +
+"Date: " + nowts + "<br>" +
+
+
+
+
+"</span></td>" + 
+
+
+ "</tr>";
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+			});
+     
+            $('#list').html( output );
+            $('#list').listview( "refresh" );
+
+
+
+
+
+
+	});
+	
+
+
+
+</script>
+
+
+<script>
+
+function loc1(lat,lng,gid,ts,accuracy,action){
+//alert(lat);
+//alert(lng);
+localStorage.setItem("nowlat", lat);
+localStorage.setItem("nowlng", lng);
+localStorage.setItem("nowgid", gid);
+localStorage.setItem("nowgidts", ts);
+localStorage.setItem("nowaccuracy", accuracy);
+localStorage.setItem("nowaction", action);
+
+//localStorage.setItem("nowlat", "34.1647988");
+//localStorage.setItem("nowlng", "-118.40474929999998");
+//alert("yo5");
+window.location.replace("show-location.html");
+}
+
+
+</script>
+
+
+
+
+
+
+<script>
+
+document.getElementById('nowcid').textContent = localStorage.getItem("nowcid");
+document.getElementById('nowconame').textContent = localStorage.getItem("nowconame");
+document.getElementById('nowwid').textContent = localStorage.getItem("nowwid");
+document.getElementById('nowwrkname').textContent = localStorage.getItem("nowwrkname");
+
+</script>
+
+
+
+  
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geo App LIST RECENT Locations</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<!--  --><script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.thinbox {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	/*width: 133px;*/
+	}
+.thinbox old {
+	border: thin solid #CCC;
+	/*margin: 4px;*/
+	padding: 4px;
+	width: 133px;	
+}
+</style>  
+<script>
+//clear first
+//localStorage.setItem("rt_completecheck", "");
+</script>
+
+<!--
+<script>
+    (function(_,e,rr,s){_errs=[s];var c=_.onerror;_.onerror=function(){var a=arguments;_errs.push(a);
+    c&&c.apply(this,a)};var b=function(){var c=e.createElement(rr),b=e.getElementsByTagName(rr)[0];
+    c.src="https://beacon.errorception.com/"+s+".js";c.async=!0;b.parentNode.insertBefore(c,b)};
+    _.addEventListener?_.addEventListener("load",b,!1):_.attachEvent("onload",b)})
+    (window,document,"script","5653a9f734ac603f4600021a");
+</script> -->
+
+
+<!--
+<script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+
+ -->
+<script src="inc/jq/validate/dist/jquery.validate.js"></script>
+</head>
+<body>
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+<div class="box1 center1 boxblue" >
+<a href="index.html" rel="external"><img src="app-logo-banner-320x60.png" width="300" height="60" border="0"></a>
+</div>
+
+
+<!--<h1>Page head Title</h1> -->
+</div><!-- /header -->
+
+
+<section id="page1" data-role="page">
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+<!--INSERT START -->
+
+
+
+<table width="95%" border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+<td><a rel="external" href="co-dashboard.html" class="ui-btn  ui-btn-a tsize1">Home<br><br></a> </td>
+<td><a rel="external" href="co-worker-list.html" class="ui-btn  ui-btn-a tsize1">Company<br>
+Workers</a> </td>
+<td><a href="co-geo-recent.html" class="ui-btn  ui-btn-a tsize1" rel="external">All Workers<br>
+Last Known Locations</a></td>
+<td><a href="co-geo-list-day.html" class="ui-btn  ui-btn-a tsize1" rel="external">ALL Workers<br>
+Recent Locations</a></td>
+<td><a href="co-comapny-update.html" class="ui-btn  ui-btn-a tsize1" rel="external">Update<br>
+Comapny Info</a></td>
+<td><a rel="external" href="co-add-new-worker.html" class="ui-btn  ui-btn-a tsize1">ADD<br>NEW WORKER</a></td>
+<td><a  href="co-logout.html" class="ui-btn  ui-btn-a tsize1" rel="external">Log<br>
+Out</a></td>
+</tr>
+</table>
+<br>
+
+
+
+<!--
+
+<a rel="external" href="co-dashboard.html" class="buttonlink2 center1">return</a> <br>
+
+<a rel="external" href="co-dashboard.html" class="buttonlink2 center1">Dashboard</a> <br>
+<a rel="external" href="co-worker-list.html" class="buttonlink2 center1">Co Workers</a> <br>
+ -->
+
+
+<!--
+<a rel="external" href="co-new-worker.html" class="buttonlink2 center1">ADD NEW WORKER</a> <br> -->
+<!--
+<a rel="external" href="company-list-all.html" class="buttonlink2 center1">All Companies</a>
+
+<br><br>
+ -->
+<!-- 
+<a rel="external" href="geo-add-button.html" class="buttonlink2 center1">NEW GEO LOCATION</a> <br>
+ -->
+<div>
+</div>
+<!--
+<br>
+
+RECENT Geo LISTINGS FOR:<br>
+
+<span class="print_data_22_b">
+
+<span id="nowconame"></span> (CID 
+<span id="nowcid"></span> )
+
+</span><br>
+<br>
+<br>
+
+
+ -->
+
+
+
+Company Active Worker List FOR:<br>
+
+<strong>
+<span class="cap1">
+<span id="co_name"></span><br>
+
+<span id="co_first"></span> <span id="co_last"></span>
+</span></strong>
+
+<span class="print_data_22_b">
+
+
+
+</span><br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+<div align="center">
+
+
+
+
+<!--
+width="1200"
+<div id="list" data-role="listview"></div> -->
+
+
+
+
+
+
+<form action=""  method="POST" name="nowform" id="nowform">
+
+
+
+<table  border="0" align="center" cellpadding="2" cellspacing="2">
+<tr>
+<td valign="top">
+
+new worker
+
+</td>
+</tr>
+<tr>
+<td valign="top"><div id='nowform_first_errorloc' class="error_strings"></div><div data-role="fieldcontain"></div><label for="first">First: </label>
+<input id="first" name="first" type="text" size="15" value="bob"  class="print_data_22" />		
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+
+
+
+<div id='nowform_last_errorloc' class="error_strings"></div>
+
+<div data-role="fieldcontain"></div>
+	<label for="last">Last: </label>
+<input name="last" type="text" class="print_data_22" id="last" value="smith" size="15">		
+
+</td>
+</tr>
+
+
+
+<tr>
+<td valign="top">
+
+
+
+<div id='nowform_login_errorloc' class="error_strings"></div>
+
+<div data-role="fieldcontain"></div>
+	<label for="login">Driver Login: </label>
+<input id="login" name="login" type="text" size="15" class="print_data_22" />			
+	
+
+</td>
+</tr>
+
+<tr>
+<td valign="top">
+
+<div id='nowform_pass_errorloc' class="error_strings"></div>
+
+<div data-role="fieldcontain"></div>
+<label for="pass">Password*:</label>
+	<input name="pass" type="password" class="print_data_22" id="pass" value="123" size="15">			
+
+
+
+</td>
+</tr>
+
+
+
+<tr>
+<td valign="top">
+
+
+
+
+
+
+<div id='nowform_phone_errorloc' class="error_strings"></div>
+
+<div data-role="fieldcontain"></div>
+	<label for="phone">Cellphone: </label>
+<input id="phone" name="phone" type="text" size="15" value="8181112222" class="print_data_22" />		
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+
+<div id='nowform_email_errorloc' class="error_strings"></div>
+
+<div data-role="fieldcontain"></div>
+	<label for="email">Email: </label><br>
+<input id="email" name="email" type="text" value="a@aaa.com" size="15" class="print_data_22" />		
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">Submit:<br>
+
+
+
+<input data-role="submit" type="submit" value="ADD NEW WORKER">
+
+
+<input type="hidden" name="trylogin" value= "true" >
+
+
+
+
+
+</td>
+</tr>
+<tr>
+<td valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top">&nbsp;</td>
+</tr>
+</table>
+
+</form>
+
+</div>
+
+<br><br>
+
+
+<span class="print_data_22_b">
+
+<span id="rtshow"></span>
+
+</span>
+<br><br>
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+<div class="ui-grid-c boxblue">
+<!--foot -->
+</div>
+</footer>
+
+
+<!-- /footer -->
+
+
+<!-- code for including header/footer -->
+    <script type="text/javascript">
+      
+      // we're ready, include away
+      $(window).ready(function(){
+        
+        // use easy AJAX jQuery helpers
+        
+		// head no work!!!!
+        // add header.html into <header>
+        $.get("header-inc.html", function(fileData){
+          $('header').html(fileData); 
+        });
+/*
+        // add footer.html into <footer>
+        $.get("footer-inc.html", function(fileData){
+          $('footer').html(fileData); 
+        });
+       
+	    */	   
+      });
+      
+</script>
+
+<script>
+
+//document.getElementById('Company').textContent = localStorage.getItem("Company");
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+document.getElementById('co_name').textContent = localStorage.getItem("co_name");
+document.getElementById('co_first').textContent = localStorage.getItem("co_first");
+document.getElementById('co_last').textContent = localStorage.getItem("co_last");
+
+</script>
+
+
+
+
+
+<script>
+
+
+
+
+
+$("#page1").on("pageinit", function() {
+        //
+		//alert ("test1");
+
+$("form").validate({
+		rules: {
+                login: {
+                    required: true
+                },
+                pass: {
+                    required: true
+                }
+            },
+            errorPlacement: function(error, element) {
+                error.insertBefore(element.parent());
+
+                //alert ("test2");
+            },
+
+		submitHandler: function(form) {
+        //code that should happen after validation if no errors are found goes here
+        
+        //alert ("success");
+	
+// form valication successful
+
+//alert( "1" );
+
+//var first  = form.first.value;
+//var last = form.last.value;
+
+localStorage.setItem("dr_login", form.email.value);
+localStorage.setItem("dr_pass", form.pass.value);
+localStorage.setItem("dr_first", form.first.value);
+localStorage.setItem("dr_last", form.last.value);
+localStorage.setItem("dr_phone", form.phone.value);
+localStorage.setItem("dr_email", form.email.value);
+//localStorage.setItem("nowwrkname", value.first + " " + value.last);
+
+
+
+
+
+//localStorage.setItem("PUC_Number", form.PUC_Number.value);
+
+// start post	
+	
+	
+// show that something is loading
+		$('#response').html("<b>Logging Into GEO...</b>");
+		
+		/*
+		 * 'post_receiver.php' - where you will pass the form data
+		 * $(this).serialize() - to easily read form data
+		 * function(data){... - data contains the response from post_receiver.php
+		 */
+//client-update-contact.php	- client-update-ztmp.php
+
+//alert( "2" );
+
+
+//alert( "2 " + form.first.value +"-"+ form.last.value+"-"+form.phone.value+"-"+form.email.value);
+
+
+//alert( "2 " + localStorage.getItem("dr_first") +"-"+ localStorage.getItem("dr_last")+"-"+localStorage.getItem("dr_phone")+"-"+localStorage.getItem("dr_email")+"-"+localStorage.getItem("co_cid"));
+	 
+$.post('http://nmiapp.com/zgeo/app-data/co-add-new-worker.php', {
+
+first: localStorage.getItem("dr_first"),
+last: localStorage.getItem("dr_last"),
+cellphone: "7775553432",
+//localStorage.getItem("dr_phone")
+email: localStorage.getItem("dr_email"),
+login: localStorage.getItem("dr_login"),
+pass: localStorage.getItem("dr_pass"),
+cid: localStorage.getItem("co_cid"),
+
+
+}, function(data){
+	
+	//alert( "3" );
+			
+			// show the response
+			// bak $('#response').html(data);
+			// FIX THIS WITH BETTER SOON - do dbetter in php page
+			$('#response').html("SUCCESS");
+			
+			// alert("Data: " + data + "\nStatus: " + status);
+console.log ('data', data);
+output = "";
+
+var date_lastlogin = new Date();
+localStorage.setItem('date_lastlogin', date_lastlogin);
+	
+
+// was each here
+window.location.replace("co-worker-list.html");
+
+
+
+			//$('#response2').html(data);
+		}).fail(function() {
+		
+			// just in case posting your form failed
+			$('#response').html("Login Failed. Please try again");
+			//alert( "Posting failed." );
+			
+		});
+
+		// to prevent refreshing the whole page page
+		return false;
+	
+//}
+
+        
+    },
+/*			
+showErrors: function(errorMap, errorList) {
+// this prevents errors showing
+		
+		//code that should happen after validation if errors are found goes here
+        //alert ("no success yet");
+}			
+*/			
+});
+       //alert ("test3");
+}
+
+);
+
+//alert("test4");
+
+</script>
+
+
+  
+</body>
+</html>

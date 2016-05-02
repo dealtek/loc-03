@@ -1,0 +1,1 @@
+<?php if(!session_id()) session_start();if ((isset($_SESSION['now_said'])) && ($_SESSION['now_said'] > 0)) {} else {//header(sprintf("Location: %s", $updateGoTo));echo '<meta http-equiv="refresh" content="0; url=list-ship.php">';//echo '<meta http-equiv="refresh" content="0; url=index.php">';flush();exit(0);//$_SESSION['now_ven']}?>

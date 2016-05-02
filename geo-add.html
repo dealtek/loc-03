@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geo App ADD Location</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<!-- -->
+<link rel="stylesheet" href="inc/jq/themes/theme-02.min.css" />
+<link rel="stylesheet" href="inc/jq/themes/jquery.mobile.icons.min.css" />
+
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+
+ <script>
+	$(function(){
+		$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+    </script>
+
+<link href="mob.css" rel="stylesheet" type="text/css" />
+
+
+<style type="text/css" xml:space="preserve">
+BODY, P,TD{ font-family: Arial,Verdana,Helvetica, sans-serif; font-size: 10pt }
+A{font-family: Arial,Verdana,Helvetica, sans-serif;}
+B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : bold;}
+.error_strings{ font-family:Verdana; font-size:14px; color:#F00; }
+</style>
+
+
+<!--<script language="JavaScript" src="../admin/inc/gen_validatorv4.js"
+type="text/javascript" xml:space="preserve"></script>
+ -->
+
+
+<style type="text/css">
+
+input999
+{
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+	border: 1px solid #CCC;
+	padding: .2em;
+ 	margin: .2em 0;
+	
+}
+
+.label_16g999 {
+	color: #999999;
+	font-size: 16px;
+}
+
+.big24999 {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	background-color: #6290ee;
+	font-size: 24px;
+}
+
+.bigbutt999{ 
+
+/*no need use one below - ui-radio input override*/
+width: 6em; 
+height: 6em; 
+background-color: #6290ee;
+}
+
+.ui-radio input {
+	position: absolute;
+	left: .466em;
+	top: 50%;
+	width: 62px;
+	height: 62px;
+	margin: -11px 0 0 0;
+	outline: 0 !important;
+	z-index: 1;
+	background-color: #0C0;
+}
+
+
+</style>
+
+
+  
+</head>
+<body>
+
+<div data-role="header" data-position="fixed" data-theme="a">
+
+
+
+<div class="box1 center1 boxblue" >
+<a href="dashboard.html" rel="external"><img src="app-logo-banner-320x60.png" width="320" height="61" class="center" ></a>
+</div>
+
+
+
+<!--<h1>Page head Title</h1> -->
+</div><!-- /header -->
+
+<section id="page1" data-role="page">
+
+<div role="main" class="ui-content">
+<div class="content" >
+<div class="box1 center1" >
+  
+      
+<!--INSERT START -->
+
+<form action="" method="post" name="thisform" id="thisform" >
+
+
+<table width="75%" border="0" align="center" cellpadding="4" cellspacing="4">
+<tr>
+<td colspan="2" align="center">
+<span class="print_data_22">
+<!--
+111 
+<button onclick="myFunction()">Arrive</button> -->
+
+
+Simple Geolocation Test <br><br>
+
+<br><br>
+
+<a class="buttonlink7" href="index.html" rel="external"> <span class="bigfont2">Return</span> </a>
+
+<br><br>
+
+<a class="buttonlink7" href="geo-list.html" rel="external"> <span class="bigfont2">Recent Activity</span> </a>
+
+<br><br>
+
+
+
+
+
+<a href="javascript:location.reload(true)" class="buttonlink7">Refresh Geo Location</a>
+
+
+<br>
+
+<span class="print_data_22 fgreen" id="progress"></span>
+
+</strong><br><br>
+</span>
+</td>
+</tr>
+
+
+   <tr>
+   
+   <td colspan="2"  align="center">
+   
+   <span class="print_data_22 fgreen" >
+   
+   <div id='responsepost'></div><br><br>
+</span>
+
+<input type="button" class="buttonform2_24" name="submit" value= " - LOG THIS LOCATION - " onClick="testResults(this.form)" />
+   </td>
+    </tr>
+  
+
+
+<tr>
+<td width="38%"  align="left" valign="top">
+
+Action:<br>
+
+<!--input[type='radio'] {
+    transform: scale(2);
+    }
+} -->
+
+
+<strong>ARRIVE:</strong><br><br>
+<input name="action" type="radio" id="action" value="Arrive">
+<!-- class="bigbutt"  <input id="action" name="action" type="text" value="Arrive"  class="print_data_22" /> -->
+  
+  <!--
+<input type="button" class="buttonform2_24" name="action" value= "Arrive" onClick="myFunction()" /> -->
+
+
+
+  
+ <!-- -->
+
+
+
+
+<!--
+ -->
+
+<!--
+<input id="action" name="action" type="text" value="Leave"  class="print_data_22" />
+<br>action -->
+
+
+<span id="action"></span></td>
+<td width="62%" align="left" valign="top">
+<br>
+<strong>LEAVE:</strong><br><br>
+<input id="action" type="radio" name="action" value="Leave" ><!-- -->
+
+<!--class="bigbutt"
+<input id="action" type="radio" name="action" value="Leave"> -->
+  </td>
+</tr>
+
+
+<tr>
+<td colspan="2"  align="left" valign="top"><br>
+<br></td>
+</tr>
+<tr>
+<td colspan="2"  align="left" valign="top">
+<span class="print_data_22">
+
+Latitude: 
+<span id="Latitude"></span></span>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left" valign="top">
+<span class="print_data_22">
+Longitude:
+<span id="Longitude"></span></span></td>
+</tr>
+<tr>
+<td colspan="2" align="left" valign="top">
+<span class="print_data_22">
+Accuracy:
+
+<span id="Accuracy"></span></span></td>
+</tr>
+<tr>
+<td colspan="2" align="left" valign="top">
+<span class="print_data_22">
+Timestamp:
+
+
+<span id="Timestamp"></span></span></td>
+</tr>
+<tr>
+<td colspan="2" align="left" valign="top">
+<span class="print_data_22">
+Timestamp as Date:<br>
+<span id="nowgeots"></span>
+</span>
+</td>
+</tr>
+
+</table>
+
+
+
+</form>
+<!--
+
+<br><br> after
+<input type="button" class="buttonform2_24" name="action" value= "Arrive" onClick="myFunction1()" /> 
+
+<p id="demo1"></p>
+ -->
+<script>
+
+/*
+function myFunction1() {
+	
+	alert("ee");
+	
+    document.getElementById("demo1").innerHTML = "Hello World";
+}
+*/
+</script>
+
+
+
+
+
+<!--<input type="button" class="buttonform2_24" name="submit" value= " - date zz - " onClick="getFormattedDate(nowstamp)" />
+ -->
+
+
+<script>
+
+// onSuccess Callback
+// This method accepts a Position object, which contains the
+// current GPS coordinates
+//
+
+document.getElementById('progress').textContent = "Looking up Your Current Location... ";
+
+
+var onSuccess = function(position) {
+    
+	/*
+	alert('Latitude: '          + position.coords.latitude          + '\n' +
+          'Longitude: '         + position.coords.longitude         + '\n' +
+          'Altitude: '          + position.coords.altitude          + '\n' +
+          'Accuracy: '          + position.coords.accuracy          + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          'Heading: '           + position.coords.heading           + '\n' +
+          'Speed: '             + position.coords.speed             + '\n' +
+          'Timestamp: '         + position.timestamp                + '\n');
+
+*/
+
+
+//var Latitude1 = position.coords.latitude;
+//var Longitude1 = position.coords.longitude;
+
+
+// maybe dump these vars
+
+var Latitude = position.coords.latitude;
+var Longitude = position.coords.longitude;
+var Altitude = position.coords.altitude;
+var Accuracy = position.coords.accuracy;
+var Altitude_Accuracy = position.coords.altitudeAccuracy;
+var Heading = position.coords.heading;
+var Speed = position.coords.speed;
+var Timestamp = position.timestamp
+
+var nowstamp = new Date();
+var nowgeots = new Date(position.timestamp);
+
+
+// show screen
+
+/*
+// not now do later
+function getFormattedDate(date) {
+	var nowstamp = new Date(); // dupe
+  var year = date.getFullYear();
+  var month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+  var day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+  
+  alert("aaa " + month + '/' + day + '/' + year);
+  
+  return month + '/' + day + '/' + year;
+  
+  
+}
+*/
+
+
+
+//tmp
+
+/*
+
+var Latitude2 = position.coords.latitude;
+var Longitude2 = position.coords.longitude;
+var Altitude2 = position.coords.altitude;
+var Accuracy2 = position.coords.accuracy;
+var Altitude_Accuracy2 = position.coords.altitudeAccuracy;
+var Heading2 = position.coords.heading;
+var Speed2 = position.coords.speed;
+var Timestamp2 = position.timestamp
+
+var nowstamp2 = new Date();
+var nowgeots2 = new Date(position.timestamp);
+*/
+
+
+/*
+
+alert('nowstamp2: '    + nowstamp2    + '\n' +
+      'nowgeots2: ' + nowgeots2 + '\n' +
+	  'Latitude2: ' + Latitude2 + '\n'
+	  );
+*/
+
+//var Latitude1a = 88; //position.coords.latitude
+
+
+document.getElementById('progress').textContent = "These are the results showing the current location... ";
+
+/*
+
+alert('nowstamp: '    + nowstamp    + '\n' +
+      'nowgeots: ' + nowgeots + '\n');
+
+*/
+
+
+
+//
+//document.thisform.Latitude1.value=Latitude;
+//document.thisform.Longitude1.value=Longitude;
+//document.thisform.Accuracy1.value=Accuracy;
+//document.thisform.Timestamp1.value=Timestamp;
+
+document.getElementById('Latitude').textContent = Latitude;
+document.getElementById('Longitude').textContent = Longitude;
+//document.getElementById('Altitude').textContent = Altitude;
+document.getElementById('Accuracy').textContent = Accuracy;
+//document.getElementById('Altitude_Accuracy').textContent = Altitude_Accuracy;
+//document.getElementById('Heading').textContent = Heading;
+//document.getElementById('Speed').textContent = Speed;
+document.getElementById('Timestamp').textContent = Timestamp;
+document.getElementById('nowgeots').textContent = nowgeots;
+
+
+//alert('111 Latitude2: ' + Latitude2 );
+
+// i guess var only good in block so move post here
+
+// tmp use LS
+
+localStorage.setItem("Latitude", position.coords.latitude);
+localStorage.setItem("Longitude", position.coords.longitude);
+localStorage.setItem("Accuracy", position.coords.accuracy);
+localStorage.setItem("Timestamp", position.timestamp);
+localStorage.setItem("nowgeots", new Date(position.timestamp));
+
+
+};
+//lastcheck_test = new Date();
+//date position.timestamp
+
+
+// onError Callback receives a PositionError object
+//
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+
+</script>
+
+<!--
+
+<script language="JavaScript" type="text/javascript"
+    xml:space="preserve">//<![CDATA[
+//You should create the validator only after the definition of the HTML form
+  var frmvalidator  = new Validator("thisform");
+    frmvalidator.EnableOnPageErrorDisplay();
+    frmvalidator.EnableMsgsTogether();
+
+    frmvalidator.addValidation("firstname","req","Please enter your First Name");
+    frmvalidator.addValidation("firstname","maxlen=30",	"Max length for FirstName is 30");
+	
+	frmvalidator.addValidation("lastname","req","Please enter your Last Name");
+    frmvalidator.addValidation("lastname","maxlen=30",	"Max length for Last Name is 30");
+
+	frmvalidator.addValidation("cellphone","req","Please enter your cellphone");
+    frmvalidator.addValidation("cellphone","maxlen=20", "Max length for cellphone is 20");
+
+	frmvalidator.addValidation("driverslicense","req","Please enter your drivers license");
+    frmvalidator.addValidation("driverslicense","maxlen=20", "Max length for drivers license is 20");
+
+	
+	 
+	 frmvalidator.addValidation("socialsecnum","req","Please enter your social security number");
+    frmvalidator.addValidation("socialsecnum","maxlen=12", "Max length for social security number is 12");
+
+
+//]]></script>
+
+ -->
+
+
+<script>
+
+
+
+
+//alert('2a Latitude2: ' + Latitude2 );
+
+
+function testResults (form) {
+
+
+	
+//alert('2b Latitude2: ' + Latitude2 );	
+	
+	
+    //var Client_ID  = form.Client_ID.value;
+	
+   // alert ("You typed: " + Client_ID +" " +webpass);
+//
+
+
+//alert("1111  ");
+
+//localStorage.setItem("PUC_Number", form.PUC_Number.value);
+
+// start post	
+	
+// show that something is loading
+		$('#responsepost').html("<b>Loading response...</b>");
+		
+		/*
+		 * 'post_receiver.php' - where you will pass the form data
+		 * $(this).serialize() - to easily read form data
+		 * function(data){... - data contains the response from post_receiver.php
+		 */
+//client-update-contact.php	- client-update-ztmp.php
+
+
+
+//here new 
+
+
+
+//var getstuff = Latitude2 + " - " + Longitude2 + " - " + Accuracy2 + " - " + Timestamp2 ;
+
+
+
+// was HERE ---- localStorage.setItem("action", form.action.value);
+
+
+// YO FOR NOW LAT LONG does NOT SEEM to work right here - so I use local store instead
+
+// later dump extar fields!!!!! soon
+
+//alert('act: ' + form.action.value );
+//alert('LAT1: ' + form.action.Latitude1 );		
+
+
+var getstuff = localStorage.getItem("Latitude") + " - " + localStorage.getItem("Longitude") + " - " + localStorage.getItem("Accuracy") + " - " + localStorage.getItem("Timestamp") + " - " + localStorage.getItem("nowgeots");
+
+//alert("getstuff  " + getstuff);
+	 
+//$.post('https://idcapp.com/app-data/client-update-number.php', {
+	
+//
+$.post('../app-data/geo-add.php', {
+//$.post('zgeox.html', {
+
+	
+	
+latitude: 	localStorage.getItem("Latitude"),
+longitude: 	localStorage.getItem("Longitude"),
+accuracy: 	localStorage.getItem("Accuracy"),
+timestamp: 	localStorage.getItem("Timestamp"),
+nowgeots: 	localStorage.getItem("nowgeots"),
+action: 	localStorage.getItem("action")				 
+
+		
+}, function(data){
+			
+			// show the response
+			$('#responsepost').html(data);
+			//
+			
+			
+			//alert( "Posting yo." + getstuff);
+			
+			
+			
+			// no need
+			
+			//$('#response2').html(data);
+		window.location.replace("geo-list-mobile.html");
+		}).fail(function() {
+		
+			// just in case posting your form failed
+			alert( "Posting failed." );
+			
+		});
+
+		// to prevent refreshing the whole page page
+		return false;
+
+
+//window.location.replace("new-client-application-register3.html");
+		
+			
+	
+}
+</script>
+
+<script>
+//pre populate
+
+
+//var Latitude1a = 88; //position.coords.latitude
+
+//document.thisform.Latitude1.value=Latitude1a;
+
+
+//document.thisform.Longitude1.value=Longitude1;
+
+//document.thisform.Latitude1.value=22;
+
+//document.thisform.PUC_Number.value=56;
+//document.thisform.PUC_Number.value=localStorage.getItem("PUC_Number");
+
+</script>
+
+
+
+
+
+
+<script>
+
+// start radio
+// complex workaround just for radio buttons in safari
+	window.onload=function() {
+  var radios = document.getElementsByName('action');
+  for (var i=0;i<radios.length;i++) {
+    radios[i].onclick=function() {
+		
+	localStorage.setItem("action", this.value);
+    //alert(this.value);
+	    
+	/*
+	  if (this.value == "Arrive")
+	  {
+		// just set LS here
+		//alert("radio a " +this.value);
+		localStorage.setItem("action", this.value);
+		}else{
+		//alert("radio L  " +this.value); 
+		localStorage.setItem("action", this.value);
+		}
+	*/
+    }
+  }
+
+}
+	// end radio
+
+</script>
+
+
+
+
+
+
+
+
+<!--INSERT END -->
+
+</div><!-- end .box -->
+</div><!-- end .content -->
+</div><!-- /ui-content -->
+  
+</section><!-- /page -->
+<!--
+<footer data-role="footer" class="ui-barNAH" data-position="fixed" data-theme="a">
+<div class="ui-grid-c boxblue">
+foot
+</div>
+</footer> -->
+
+<!-- /footer -->
+
+</body>
+</html>
